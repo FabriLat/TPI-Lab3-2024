@@ -14,10 +14,10 @@ function App() {
   const clients = [{username: "", email: "", password: "", showsBuyed: "", tickets: "tickets", type:"client"}]
 
   //Una pelicula puede tener varias funciones. 
-  const movies = [{id:1, title:"Shrek" ,rating:5.0, runTime:89,shows:shows[0]},
-                {id:2,title:"Openheimmer",rating: 5.0, runTime: 180, shows: shows[0]},
-                {id:3, title:"Hostel",rating: 4.0, runTime: 94, shows:shows[0]},
-                {id: 4, title:"Saw", raiting: 4.0, runTime: 103,shows:shows [0]},
+  const movies = [{id:1, title:"Shrek" ,image: "https://pics.filmaffinity.com/Shrek-903764423-large.jpg",rating:5.0, runTime:89,shows:shows[0]},
+                {id:2,title:"Openheimmer",image:"https://www.rosariocine.com.ar/webfiles/rosariocine/productos/5132/1.jpg",rating: 5.0, runTime: 180, shows: shows[0]},
+                {id:3, title:"Hostel",image:"https://m.media-amazon.com/images/M/MV5BMTY1NDA3ODM1OV5BMl5BanBnXkFtZTcwMDM5NzEzMQ@@._V1_.jpg",rating: 4.0, runTime: 94, shows:shows[0]},
+                {id: 4, title:"Saw",image:"https://m.media-amazon.com/images/I/61Dr1uVEjWL._AC_UF894,1000_QL80_.jpg", raiting: 4.0, runTime: 103,shows:shows [0]},
 ];
 
 
