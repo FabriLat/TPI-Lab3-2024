@@ -1,7 +1,9 @@
+import { Row, Col } from "react-bootstrap";
+
 const Dashboard = ({ movies, shows }) => {
   const mappedMovies = movies.map((movie) => (
-    <div className="d-flex flex-row mb-3 " key={movie.id}>
-      <div className="d-flex flex-column align-items-center">
+    <Row className="mb-3 " key={movie.id}>
+      <Col className="align-items-center">
         <h2>Titulo: {movie.title}</h2>
         <br />
         <img src={movie.image} width="200" alt="" />
@@ -12,13 +14,15 @@ const Dashboard = ({ movies, shows }) => {
         <p>Duracion: {movie.runTime}</p>
 
         <br />
-      </div>
-    </div>
+      </Col>
+    </Row>
   ));
   return (
     <>
+    <Row>
       <nav className="">
         <ul className="nav justify-content-between">
+        <Col md={1}  className="d-flex align-items-center">
           <li className="m-2">
             <a className="navbar-brand" href="">
               <img
@@ -29,11 +33,16 @@ const Dashboard = ({ movies, shows }) => {
               />
             </a>
           </li>
+         
           <li className="m-2">
             <a className="nav-link link-dark" href="">
               Titulo
             </a>
           </li>
+       
+          </Col>
+          <Col/>
+          <Col md={1} className="d-flex justify-content-end align-items-center">
           <li className="m-2">
             <a className="nav-link link-dark" href="">
               Ingresar
@@ -44,13 +53,16 @@ const Dashboard = ({ movies, shows }) => {
               Registrarse
             </a>
           </li>
+          </Col>
         </ul>
       </nav>
+      </Row>
+
 
       <h1 className="d-flex justify-content-center">BIENVENIDO</h1>
 
       <div className="d-flex justify-content-around mt-5">{mappedMovies}</div>
-    </>
+      </>
   );
 };
 export default Dashboard;
