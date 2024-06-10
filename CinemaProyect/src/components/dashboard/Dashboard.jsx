@@ -1,8 +1,9 @@
 import { Row, Col } from "react-bootstrap";
 
+
 const Dashboard = ({ movies, shows }) => {
   const mappedMovies = movies.map((movie) => (
-    <Row className="mb-3 " key={movie.id}>
+    <Row className="mb-3 bg-color-red" key={movie.id}>
       <Col className="align-items-center">
         <h2>Titulo: {movie.title}</h2>
         <br />
@@ -17,12 +18,13 @@ const Dashboard = ({ movies, shows }) => {
       </Col>
     </Row>
   ));
+
   return (
     <>
     <Row>
       <nav className="">
         <ul className="nav justify-content-between">
-        <Col md={1}  className="d-flex align-items-center">
+        <Col md={3}  className="d-flex align-items-center">
           <li className="m-2">
             <a className="navbar-brand" href="">
               <img
@@ -36,13 +38,13 @@ const Dashboard = ({ movies, shows }) => {
          
           <li className="m-2">
             <a className="nav-link link-dark" href="">
-              Titulo
+              DRAGON CINEMA
             </a>
           </li>
        
           </Col>
           <Col/>
-          <Col md={1} className="d-flex justify-content-end align-items-center">
+          <Col md={2} className="d-flex justify-content-end align-items-center">
           <li className="m-2">
             <a className="nav-link link-dark" href="">
               Ingresar

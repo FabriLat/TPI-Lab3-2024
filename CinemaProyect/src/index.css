@@ -10,4 +10,10 @@ html {
 
 body {
   margin: 0;
+  /* background: rgb(0, 0, 0);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(113, 113, 113, 1) 100%
+  ); */
 }
