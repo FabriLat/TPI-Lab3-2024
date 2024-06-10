@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import Dashboard from './components/dashboard/Dashboard';
+import SignInDashboard from './components/signInDashboard/SignInDashboard';
+import LogInDashboard from './components/logInDashboard/LogInDashboard';
 
 
 function App() {
@@ -25,7 +27,7 @@ const [movies,setMovies] = useState(initialMovies);
 
   return (
     <div> 
-      <Dashboard movies={initialMovies} />
+      <Dashboard movies={initialMovies} /> 
       <p>hola</p>
     </div>
  
