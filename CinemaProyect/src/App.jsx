@@ -27,8 +27,7 @@ const [movies,setMovies] = useState(initialMovies);
 
   return (
     <div> 
-      <Dashboard movies={initialMovies} /> 
-      <p>hola</p>
+      <Dashboard movies={initialMovies}/> 
     </div>
  
   )
