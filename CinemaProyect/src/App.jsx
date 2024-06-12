@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Dashboard from './components/dashboard/Dashboard';
 import SignInDashboard from './components/signInDashboard/SignInDashboard';
 import LogInDashboard from './components/logInDashboard/LogInDashboard';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 
 function App() {
@@ -13,7 +14,8 @@ function App() {
   //arreglo de tickets vacío, se empiezan a generar al sacar una entrada.
   const movieTicket = [{price: 0,movie: "movie",show:"show",client: "client"}]
 
-  const clients = [{username: "", email: "", password: "", showsBuyed: "", type:"client"}]
+  //Cliente creado de prueba (todos van a tener los mismos atributos/propiedades)
+  const clients = [{username: "Fabri", email: "Fabri@gmail.com", password: "12345", showsBuyed: "", type:"client"}]
 
   //Una pelicula puede tener varias funciones. 
   const initialMovies = [{id:1, title:"Shrek" ,image: "https://pics.filmaffinity.com/Shrek-903764423-large.jpg",rating:5.0, runTime:89,shows: [{},{},{}]},
@@ -25,12 +27,21 @@ function App() {
 const [movies,setMovies] = useState(initialMovies);
 
 
-  return (
-    <div> 
-      <Dashboard movies={initialMovies}/> 
-    </div>
- 
-  )
+
+    const router = createBrowserRouter([
+      //Para agregar rutas protegidas necesitamos terminar la cartelera q es una ruta protegida porque el dashboard,
+      //el login y register podría acceder cualquiera, y para la cartelera se necesita loguear/registrar.
+      { path: "/", element: <Dashboard/>},
+      { path: "/login", element: <LogInDashboard />},
+      { path: "/register", element : <SignInDashboard/>},
+    ])
+
+    return(
+      <div>
+        {<RouterProvider router={router}/>}
+      </div>
+    )
+  
 }
 
 export default App

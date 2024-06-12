@@ -1,19 +1,9 @@
 import { Row, Col, Carousel, Container } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
-const Dashboard = ({movies}) => {
-  // const mappedMovies = movies.map((movie) => (
-  //   <Row className="mb-3 bg-color-red" key={movie.id}>
-  //     <Col className="align-items-center">
-  //       <h2>Titulo: {movie.title}</h2>
-  //       <br />
-  //       <img src={movie.image} width="200" alt="" />
-  //       <p>Rating: {movie.rating}</p>
-  //       <br />
-  //       <p>Duracion: {movie.runTime}</p>
-  //       <br />
-  //     </Col>
-  //   </Row>
-  // ));
+const Dashboard = () => {
+  const navigate = useNavigate();
+
 
   return (
     <>
@@ -44,14 +34,14 @@ const Dashboard = ({movies}) => {
               className="d-flex justify-content-end align-items-center"
             >
               <li className="m-2">
-                <a className="nav-link link-dark" href="#">
+                <button className="btn btn-primary" onClick={() => navigate("/login")}>
                   Ingresar
-                </a>
+                </button>
               </li>
               <li className="m-2">
-                <a className="nav-link link-dark" href="#">
+                <button className="btn btn-primary" onClick={() => navigate("/register")}>
                   Registrarse
-                </a>
+                </button>
               </li>
             </Col>
           </ul>
@@ -61,7 +51,7 @@ const Dashboard = ({movies}) => {
 
       <Container className="text-center">
         <h1 className="mb-4">BIENVENIDO</h1>
-        <p className="mb-4">Peliculas destacadas</p>
+        <h4 className="mb-4">Peliculas destacadas</h4>
         <Carousel className="mb-4" style={{ maxWidth: '1620px' }}>
           <Carousel.Item>
             <img
