@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Dashboard from "./components/dashboard/Dashboard";
-import SignInDashboard from "./components/signInDashboard/SignInDashboard";
-import LogInDashboard from "./components/logInDashboard/LogInDashboard";
+import SignIn from "./components/signIn/SignIn";
+import LogIn from "./components/logIn/LogIn";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import MoviesDashboard from "./components/moviesDashboard/MoviesDashboard";
 import Protected from "./routes/Protected";
@@ -85,8 +85,8 @@ function App() {
     //Para agregar rutas protegidas necesitamos terminar la cartelera q es una ruta protegida porque el dashboard,
     //el login y register podría acceder cualquiera, y para la cartelera se necesita loguear/registrar.
     { path: "/", element: <Dashboard /> },
-    { path: "/login", element: <LogInDashboard isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> },
-    { path: "/register", element: <SignInDashboard /> },
+    { path: "/login", element: <LogIn isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> },
+    { path: "/register", element: <SignIn /> },
     { path: "/movies", element: ( // ruta protegida, solo si te logueaste podes acceder. XD
         <Protected isLoggedIn={isLoggedIn}>
           <MoviesDashboard initialMovies={initialMovies} />
