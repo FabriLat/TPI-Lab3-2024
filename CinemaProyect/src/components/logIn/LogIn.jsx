@@ -60,7 +60,7 @@ const LogIn = ({ setIsLoggedIn }) => {
             />
             <Button
               type="submit"
-              variant="success"
+              variant="dark"
               className=" mt-4 d-flex justify-content-center text-align-center align-items-center"
             >
               Iniciar sesión

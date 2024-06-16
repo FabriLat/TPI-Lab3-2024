@@ -5,12 +5,10 @@ import LogIn from "./components/logIn/LogIn";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import MoviesDashboard from "./components/moviesDashboard/MoviesDashboard";
 import Protected from "./routes/Protected";
-
+import NotFound from "./routes/NotFound";
 function App() {
-
   // estado para manejar log in
   const [isLoggedIn, setIsLoggedIn] = useState(false); // inicialmente no se logueó el usuario
-
 
   //Arreglo incial de funciones y peliculas (falta llenar los datos vacios)
   //Una funcion tiene 100 asientos, cuando llega a 0 available cambia a false.
@@ -78,21 +76,27 @@ function App() {
     },
   ];
 
-
   const [movies, setMovies] = useState(initialMovies); // estado para manejar películas. (ABM)
 
   const router = createBrowserRouter([
     //Para agregar rutas protegidas necesitamos terminar la cartelera q es una ruta protegida porque el dashboard,
     //el login y register podría acceder cualquiera, y para la cartelera se necesita loguear/registrar.
     { path: "/", element: <Dashboard /> },
-    { path: "/login", element: <LogIn isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> },
+    {
+      path: "/login",
+      element: <LogIn isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />,
+    },
     { path: "/register", element: <SignIn /> },
-    { path: "/movies", element: ( // ruta protegida, solo si te logueaste podes acceder. XD
+    {
+      path: "/movies",
+      // ruta protegida, solo si te logueaste podes acceder. XD
+      element: (
         <Protected isLoggedIn={isLoggedIn}>
           <MoviesDashboard initialMovies={initialMovies} />
         </Protected>
-      )
+      ),
     },
+    { path: "*", element: <NotFound/> }, // cuando no encuentra ninguna ruta, not found
   ]);
 
   return <div>{<RouterProvider router={router} />}</div>;

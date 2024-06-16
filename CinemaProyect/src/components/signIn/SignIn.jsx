@@ -73,7 +73,7 @@ const SignIn = () => {
           <Col sm="3">
             <Form.Label>Confirmar contraseña</Form.Label>
             <Form.Control ref={secondPassRef} type="password" placeholder="Confirmá tu contraseña"/>
-            <Button type="submit" variant="success" className=" mt-4 d-flex justify-content-center text-align-center align-items-center">Registrarse</Button>
+            <Button type="submit" variant="dark" className=" mt-4 d-flex justify-content-center text-align-center align-items-center">Registrarse</Button>
           </Col>
         </Form.Group>
       </Form>
