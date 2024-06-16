@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 
-const LogInDashboard = ({ setIsLoggedIn }) => {
+const LogIn = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
   // const [alert, setAlert] = useState(false);
   // ALERTA OPCIONAL PARA AVISARLE AL USUARIO Q SE LOGUEO. LA SAQUE PORQUE NO SE RENDERIZABA MOVIES
@@ -77,8 +77,8 @@ const LogInDashboard = ({ setIsLoggedIn }) => {
   );
 };
 
-export default LogInDashboard;
+export default LogIn;
 
-LogInDashboard.propTypes = {
+LogIn.propTypes = {
   setIsLoggedIn: PropTypes.func.isRequired,
 };

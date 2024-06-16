@@ -2,7 +2,7 @@ import { Form, Row, Col, Button} from "react-bootstrap";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-const SignInDashboard = () => {
+const SignIn = () => {
 
  
   const navigate = useNavigate();
@@ -81,4 +81,4 @@ const SignInDashboard = () => {
   );
 };
 
-export default SignInDashboard;
+export default SignIn;
