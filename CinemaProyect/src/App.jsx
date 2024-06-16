@@ -86,7 +86,7 @@ function App() {
       path: "/login",
       element: <LogIn isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />,
     },
-    { path: "/register", element: <SignIn /> },
+    { path: "/signin", element: <SignIn /> },
     {
       path: "/movies",
       // ruta protegida, solo si te logueaste podes acceder. XD

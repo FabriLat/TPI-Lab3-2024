@@ -1,9 +1,14 @@
 import { Form, Row, Col, Button } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { Modal } from "react-bootstrap";
 
 const LogIn = ({ setIsLoggedIn }) => {
+  // estados para mostrar y dejar de mostrar el modal
+  const [show, setShow] = useState(false);
+  const onClose = () => setShow(false);
+
   const navigate = useNavigate();
   // const [alert, setAlert] = useState(false);
   // ALERTA OPCIONAL PARA AVISARLE AL USUARIO Q SE LOGUEO. LA SAQUE PORQUE NO SE RENDERIZABA MOVIES
@@ -20,19 +25,19 @@ const LogIn = ({ setIsLoggedIn }) => {
     if (user.length === 0) {
       userRef.current.style.borderColor = "red";
       userRef.current.focus();
-    } 
-    else if (password.length === 0) {
+    } else if (password.length === 0) {
       passRef.current.style.borderColor = "red";
       passRef.current.focus();
-    } 
-    else {
+    } else {
+      // MODAL PARA CUANDO EL USUARIO QUIERE LOGUEARSE ANTES DE REGISTRARSE PREVIAMENTE
+      // setShow(true); (modal codificado mas abajo)
+
       setIsLoggedIn(true); // logueo es True
 
-      // setAlert(true);
+      // alerta no utilizada setAlert(true);
 
-      console.log("Logueo exitoso")
+      // x el momento queda una redireccion automatica hacia cartelera para pruebas.
       navigate("/movies", { replace: true });
-   
     }
   };
 
@@ -71,8 +76,25 @@ const LogIn = ({ setIsLoggedIn }) => {
           <Col sm="6" md="4" lg="3">
             {alert && <Alert variant="success">Logueado correctamente!</Alert>}
           </Col>
-        </Row> */} 
+        </Row> */}
       </Form>
+
+      <Modal show={show}>
+        <Modal.Header style={{ backgroundColor: "#39383d" }} closeButton>
+          <Modal.Title style={{ backgroundColor: "#39383d" }}>
+            Error!
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={{ backgroundColor: "#39383d" }}>
+          Para iniciar sesión, primero debés estar registrado
+        </Modal.Body>
+        <Modal.Footer style={{ backgroundColor: "#39383d" }}>
+          <Button onClick={onClose} variant="danger">
+            Cerrar
+          </Button>
+          <Button variant="success">Registrarme</Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };

@@ -39,7 +39,7 @@ const Dashboard = () => {
                 </button>
               </li>
               <li className="m-4">
-                <button className="btn btn-dark" onClick={() => navigate("/register")}>
+                <button className="btn btn-dark" onClick={() => navigate("/signin")}>
                   Registrarse
                 </button>
               </li>
