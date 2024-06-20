@@ -33,13 +33,13 @@ const Dashboard = () => {
               md={2}
               className="d-flex justify-content-end align-items-center"
             >
-              <li className="m-2">
-                <button className="btn btn-primary" onClick={() => navigate("/login")}>
+              <li className="m-4">
+                <button className="btn btn-dark" onClick={() => navigate("/login")}>
                   Ingresar
                 </button>
               </li>
-              <li className="m-2">
-                <button className="btn btn-primary" onClick={() => navigate("/register")}>
+              <li className="m-4">
+                <button className="btn btn-dark" onClick={() => navigate("/signin")}>
                   Registrarse
                 </button>
               </li>
@@ -50,7 +50,7 @@ const Dashboard = () => {
 
 
       <Container className="text-center">
-        <h1 className="mb-4">BIENVENIDO</h1>
+        <h1 className="mb-4" style={{"fontFamily": "Poppins"}}>Bienvenido</h1>
         <h4 className="mb-4">Peliculas destacadas</h4>
         <Carousel className="mb-4" style={{ maxWidth: '1620px' }}>
           <Carousel.Item>
