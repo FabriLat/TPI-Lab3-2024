@@ -18,11 +18,6 @@ const UserBase = ({ listUsers }) => {
   return (
     <>
       <Container className="d-flex flex-column align-items-center justify-content-center vh-100">
-        <Row className="mb-3 w-100">
-          <Col className="text-left">
-            <Button variant="primary">+ Agregar usuario</Button>
-          </Col>
-        </Row>
         <Row className="w-100">
           <Row className="mb-2">
             <Col xs={2} style={{ marginLeft: "50px" }}>
@@ -33,6 +28,9 @@ const UserBase = ({ listUsers }) => {
             </Col>
             <Col xs={2} style={{ marginLeft: "20px" }}>
               <strong>Rol</strong>
+            </Col>
+            <Col className="d-flex justify-content-end">
+              <Button variant="success">+ Agregar usuario</Button>
             </Col>
           </Row>
           <Col md={{ span: 12, offset: 0 }}>
