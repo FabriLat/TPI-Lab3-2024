@@ -3,7 +3,16 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-const User = ({ userName, email, type }) => {
+const User = ({ id, userName, email, type, deleteUser }) => {
+  const onClickDelete = () => {
+    const confirmed = confirm(
+      "¿Estás seguro de que deseas eliminar este usuario?"
+    );
+    if (confirmed) {
+      deleteUser(id);
+    }
+  };
+
   return (
     <>
       <ListGroup.Item>
@@ -12,10 +21,12 @@ const User = ({ userName, email, type }) => {
           <Col xs={3}>{email}</Col>
           <Col xs={1}>{type}</Col>
           <Col xs={6} className="d-flex justify-content-end">
-            <Button variant="outline-primary" style={{ marginRight: "10px" }}>
+            <Button variant="primary" style={{ marginRight: "10px" }}>
               Modificar
             </Button>{" "}
-            <Button variant="outline-danger">Eliminar</Button>
+            <Button variant="danger" onClick={onClickDelete}>
+              Eliminar
+            </Button>
           </Col>
         </Row>
       </ListGroup.Item>

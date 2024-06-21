@@ -6,6 +6,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import MoviesDashboard from "./components/moviesDashboard/MoviesDashboard";
 import Protected from "./routes/Protected";
 import NotFound from "./routes/NotFound";
+import UserBase from "./components/userBase/UserBase";
 function App() {
   // estado para manejar log in
   const [isLoggedIn, setIsLoggedIn] = useState(false); // inicialmente no se logueó el usuario
@@ -26,16 +27,67 @@ function App() {
     { price: 0, movie: "movie", show: "show", client: "client" },
   ];
 
-  //Cliente creado de prueba (todos van a tener los mismos atributos/propiedades)
-  const clients = [
+  //--------------------------------------------------------------------------------------------------------------------------------------
+  //UserBase
+  const Users = [
     {
+      id: 1,
       username: "Fabri",
       email: "Fabri@gmail.com",
       password: "12345",
       showsBuyed: "",
       type: "client",
     },
+    {
+      id: 2,
+      username: "Rosa",
+      email: "rosita@gmail.com",
+      password: "12345",
+      showsBuyed: "",
+      type: "client",
+    },
+    {
+      id: 3,
+      username: "Pepito",
+      email: "elpepe@gmail.com",
+      password: "12345",
+      showsBuyed: "",
+      type: "client",
+    },
+    {
+      id: 4,
+      username: "Juani",
+      email: "juani@gmail.com",
+      password: "12345",
+      showsBuyed: "",
+      type: "client",
+    },
+    {
+      id: 5,
+      username: "Gaston",
+      email: "fercho@gmail.com",
+      password: "12345",
+      showsBuyed: "",
+      type: "client",
+    },
+    {
+      id: 6,
+      username: "Tomi",
+      email: "wuawua@gmail.com",
+      password: "12345",
+      showsBuyed: "",
+      type: "client",
+    },
   ];
+  //estado de lista de usuarios (luego debera remplazarce la constante por la base de datos y que los cambios impacten en ella)
+  const [listUsers, setListUser] = useState(Users);
+
+  //Funcion que elimina el usuario de la lista
+  const onDeletUserHandler = (idUserDelete) => {
+    const listUpdated = listUsers.filter((user) => user.id !== idUserDelete);
+    setListUser(listUpdated);
+  };
+  //--------------------------------------------------------------------------------------------------------------------------------------
 
   //Una pelicula puede tener varias funciones.
   const initialMovies = [
@@ -50,7 +102,8 @@ function App() {
     {
       id: 2,
       title: "Oppenheimer",
-      image: "https://www.rosariocine.com.ar/webfiles/rosariocine/productos/5132/1.jpg",
+      image:
+        "https://www.rosariocine.com.ar/webfiles/rosariocine/productos/5132/1.jpg",
       rating: 5.0,
       runTime: 180,
       shows: [{}, {}, {}],
@@ -58,7 +111,8 @@ function App() {
     {
       id: 3,
       title: "Hostel",
-      image: "https://m.media-amazon.com/images/M/MV5BMTY1NDA3ODM1OV5BMl5BanBnXkFtZTcwMDM5NzEzMQ@@._V1_.jpg",
+      image:
+        "https://m.media-amazon.com/images/M/MV5BMTY1NDA3ODM1OV5BMl5BanBnXkFtZTcwMDM5NzEzMQ@@._V1_.jpg",
       rating: 4.0,
       runTime: 94,
       shows: [{}, {}, {}],
@@ -66,7 +120,8 @@ function App() {
     {
       id: 4,
       title: "Saw",
-      image: "https://m.media-amazon.com/images/I/61Dr1uVEjWL._AC_UF894,1000_QL80_.jpg",
+      image:
+        "https://m.media-amazon.com/images/I/61Dr1uVEjWL._AC_UF894,1000_QL80_.jpg",
       rating: 4.0,
       runTime: 103,
       shows: [{}, {}, {}],
@@ -74,7 +129,8 @@ function App() {
     {
       id: 5,
       title: "Tierra de osos",
-      image: "https://play-lh.googleusercontent.com/-7Gl_ipbT697kSJdJb8R_xyEACLSHMjGEXtvIpFSRxaqbXaJiWlu-rJ6VHmRgQaoCKFB=w240-h480-rw",
+      image:
+        "https://play-lh.googleusercontent.com/-7Gl_ipbT697kSJdJb8R_xyEACLSHMjGEXtvIpFSRxaqbXaJiWlu-rJ6VHmRgQaoCKFB=w240-h480-rw",
       rating: 3.5, // Ejemplo de rating
       runTime: 85, // Ejemplo de duración en minutos
       shows: [{}, {}, {}],
@@ -90,7 +146,8 @@ function App() {
     {
       id: 7,
       title: "El señor de los anillos",
-      image: "https://es.web.img3.acsta.net/medias/nmedia/18/89/67/45/20061512.jpg",
+      image:
+        "https://es.web.img3.acsta.net/medias/nmedia/18/89/67/45/20061512.jpg",
       rating: 4.9, // Ejemplo de rating
       runTime: 178, // Ejemplo de duración en minutos
       shows: [{}, {}, {}],
@@ -106,7 +163,8 @@ function App() {
     {
       id: 9,
       title: "Titanes del Pacífico",
-      image: "https://i.pinimg.com/736x/17/e1/44/17e144b2e0e49c835fb4092321fefeea.jpg",
+      image:
+        "https://i.pinimg.com/736x/17/e1/44/17e144b2e0e49c835fb4092321fefeea.jpg",
       rating: 3.7, // Ejemplo de rating
       runTime: 131, // Ejemplo de duración en minutos
       shows: [{}, {}, {}],
@@ -128,7 +186,7 @@ function App() {
       shows: [{}, {}, {}],
     },
   ];
-  
+
   const [movies, setMovies] = useState(initialMovies); // estado para manejar películas. (ABM)
 
   const router = createBrowserRouter([
@@ -149,7 +207,16 @@ function App() {
         </Protected>
       ),
     },
-    { path: "*", element: <NotFound/> }, // cuando no encuentra ninguna ruta, not found
+    {
+      path: "/userBase",
+      element: (
+        <UserBase
+          listUsers={listUsers}
+          onDeletUserHandler={onDeletUserHandler}
+        />
+      ),
+    },
+    { path: "*", element: <NotFound /> }, // cuando no encuentra ninguna ruta, not found
   ]);
 
   return <div>{<RouterProvider router={router} />}</div>;
