@@ -5,13 +5,15 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-const UserBase = ({ listUsers }) => {
+const UserBase = ({ listUsers, onDeletUserHandler }) => {
   const listMapped = listUsers.map((user) => (
     <User
       key={Math.random()}
+      id={user.id}
       userName={user.userName}
       email={user.email}
       type={user.type}
+      deleteUser={onDeletUserHandler}
     />
   ));
 
