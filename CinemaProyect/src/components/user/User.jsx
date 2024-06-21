@@ -12,10 +12,10 @@ const User = ({ userName, email, type }) => {
           <Col xs={3}>{email}</Col>
           <Col xs={1}>{type}</Col>
           <Col xs={6} className="d-flex justify-content-end">
-            <Button variant="primary" style={{ marginRight: "10px" }}>
+            <Button variant="outline-primary" style={{ marginRight: "10px" }}>
               Modificar
             </Button>{" "}
-            <Button variant="danger">Eliminar</Button>
+            <Button variant="outline-danger">Eliminar</Button>
           </Col>
         </Row>
       </ListGroup.Item>
