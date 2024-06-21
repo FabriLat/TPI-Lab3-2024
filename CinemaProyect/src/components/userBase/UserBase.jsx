@@ -1,4 +1,4 @@
-import User from "../user/User";
+import User from "./user/User";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
