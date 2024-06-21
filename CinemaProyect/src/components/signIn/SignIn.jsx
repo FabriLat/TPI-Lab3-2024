@@ -1,10 +1,8 @@
-import { Form, Row, Col, Button} from "react-bootstrap";
-import { useRef } from "react";
+import { Form, Row, Col, Button } from "react-bootstrap";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
-
- 
   const navigate = useNavigate();
   // useRef para acceder al dom
   const userRef = useRef(null);
@@ -12,8 +10,14 @@ const SignIn = () => {
   const secondPassRef = useRef(null);
   const emailRef = useRef(null);
 
-  const signInHandler = (event) => {
+  const [errors, setErrors] = useState({
+    user: false,
+    password: false,
+    secondPassword: false,
+    email: false,
+  });
 
+  const signInHandler = (event) => {
     event.preventDefault();
     const user = userRef.current.value;
     const password = passRef.current.value;
@@ -21,27 +25,46 @@ const SignIn = () => {
     const email = emailRef.current.value;
 
     if (user.length === 0) {
-      userRef.current.style.borderColor = "red";
-      userRef.current.focus();
-    } 
-    else if (password.length === 0) {
-      passRef.current.style.borderColor = "red";
-      passRef.current.focus();
-    }
-    else if (email.length === 0) {
-      emailRef.current.style.borderColor = "red";
-      emailRef.current.focus();
-    }
-    else if (secondPassword.length === 0) {
-      secondPassRef.current.style.borderColor = "red";
-      secondPassRef.current.focus();
-    }
-    else{
+
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        user: true,
+        password: false,
+        secondPassword: false,
+        email: false,
+      }));
+    } else if (email.length === 0) {
+
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        user: false,
+        password: false,
+        secondPassword: false,
+        email: true,
+      }));
+    } else if (password.length === 0) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        user: false,
+        password: true,
+        secondPassword: false,
+        email: false,
+      }));
+
+    } else if (secondPassword.length === 0) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        user: false,
+        password: false,
+        secondPassword: true,
+        email: false,
+      }));
+  
+    } else {
       console.log("Registro exitoso");
-      navigate("/login", {replace: true})
+      navigate("/login", { replace: true });
     }
   };
-
 
   return (
     <>
@@ -50,30 +73,52 @@ const SignIn = () => {
         <Form.Group as={Row} className="m-4 d-flex justify-content-center">
           <Col sm="3">
             <Form.Label>Usuario</Form.Label>
-            <Form.Control ref={userRef}  placeholder="Ingresá tu usuario" type="text" />
+            <Form.Control
+              ref={userRef}
+              className={errors.user ? "border border-danger" : ""}
+              placeholder="Ingresá tu usuario"
+              type="text"
+            />
           </Col>
         </Form.Group>
         <Form.Group as={Row} className="m-4 d-flex justify-content-center">
           <Col sm="3">
-            <Form.Label>
-              Email
-            </Form.Label>
-            <Form.Control ref={emailRef}  type="email" placeholder="Ingresá tu email" />
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              ref={emailRef}
+              className={errors.email ? "border border-danger" : ""}
+              type="email"
+              placeholder="Ingresá tu email"
+            />
           </Col>
         </Form.Group>
         <Form.Group as={Row} className="m-4 d-flex justify-content-center">
           <Col sm="3">
-            <Form.Label>
-              Contraseña
-            </Form.Label>
-            <Form.Control ref={passRef}  type="password" placeholder="Ingresá tu contraseña" />
+            <Form.Label>Contraseña</Form.Label>
+            <Form.Control
+              ref={passRef}
+              className={errors.password ? "border border-danger" : ""}
+              type="password"
+              placeholder="Ingresá tu contraseña"
+            />
           </Col>
         </Form.Group>
         <Form.Group as={Row} className="m-4 d-flex justify-content-center">
           <Col sm="3">
             <Form.Label>Confirmar contraseña</Form.Label>
-            <Form.Control ref={secondPassRef} type="password" placeholder="Confirmá tu contraseña"/>
-            <Button type="submit" variant="dark" className=" mt-4 d-flex justify-content-center text-align-center align-items-center">Registrarse</Button>
+            <Form.Control
+              ref={secondPassRef}
+              className={errors.secondPassword ? "border border-danger" : ""}
+              type="password"
+              placeholder="Confirmá tu contraseña"
+            />
+            <Button
+              type="submit"
+              variant="dark"
+              className=" mt-4 d-flex justify-content-center text-align-center align-items-center"
+            >
+              Registrarse
+            </Button>
           </Col>
         </Form.Group>
       </Form>
