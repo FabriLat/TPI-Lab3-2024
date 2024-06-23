@@ -27,7 +27,10 @@ const UserBase = ({ listUsers, onDeletUserHandler, addUser, modifyUser }) => {
 
   return (
     <>
-      <Container className="d-flex flex-column align-items-center justify-content-center vh-100">
+      <h1 className="text-center mt-5" style={{ marginBottom: "170px" }}>
+        Base de Datos de Usuarios
+      </h1>
+      <Container className="d-flex flex-column align-items-center justify-content-center vh-80">
         <Row className="w-100">
           <Row className="mb-2">
             <Col xs={2} style={{ marginLeft: "50px" }}>
@@ -54,7 +57,7 @@ const UserBase = ({ listUsers, onDeletUserHandler, addUser, modifyUser }) => {
             <ListGroup
               className="border rounded p-3"
               style={{
-                height: "500px",
+                height: "50vh",
                 overflowY: "auto",
                 border: "1px solid #ddd",
                 borderRadius: "4px",
