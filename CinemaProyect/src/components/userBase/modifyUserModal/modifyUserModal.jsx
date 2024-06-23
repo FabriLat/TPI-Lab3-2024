@@ -43,6 +43,10 @@ const ModifyUserModal = ({
     modifyUser(idUser, newData);
 
     handleClose();
+
+    setTimeout(() => {
+      alert("Se realizo la modificacion exitosamente!!");
+    }, 300);
   };
 
   return (
@@ -103,7 +107,7 @@ const ModifyUserModal = ({
             Cerrar
           </Button>
           <Button variant="primary" onClick={OnModifyUser}>
-            Agregar
+            Modificar
           </Button>
         </Modal.Footer>
       </Modal>
