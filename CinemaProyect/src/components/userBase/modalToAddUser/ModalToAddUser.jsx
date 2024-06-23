@@ -48,6 +48,10 @@ const ModalToAddUser = ({ show, handleClose, addUser }) => {
     setRolUser("Rol de usuario");
 
     handleClose();
+
+    setTimeout(() => {
+      alert("Se registro el usuario exitosamente!!");
+    }, 200);
   };
 
   return (
