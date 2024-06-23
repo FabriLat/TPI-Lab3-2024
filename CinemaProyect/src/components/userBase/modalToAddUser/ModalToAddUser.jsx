@@ -54,12 +54,12 @@ const ModalToAddUser = ({ show, handleClose, addUser }) => {
     <>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Nuevo Usuario</Modal.Title>
+          <Modal.Title style={{ color: "black" }}>Nuevo Usuario</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Email</Form.Label>
+              <Form.Label style={{ color: "black" }}>Email</Form.Label>
               <Form.Control
                 type="email"
                 placeholder="name@example.com"
@@ -73,7 +73,9 @@ const ModalToAddUser = ({ show, handleClose, addUser }) => {
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Nombre de Usuario</Form.Label>
+              <Form.Label style={{ color: "black" }}>
+                Nombre de Usuario
+              </Form.Label>
               <Form.Control
                 type="text"
                 rows={3}
@@ -86,7 +88,7 @@ const ModalToAddUser = ({ show, handleClose, addUser }) => {
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Contraseña</Form.Label>
+              <Form.Label style={{ color: "black" }}>Contraseña</Form.Label>
               <Form.Control
                 type="text"
                 rows={3}
