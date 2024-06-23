@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
 import { Modal } from "react-bootstrap";
 
-const LogIn = ({ setIsLoggedIn, loggedIn }) => {
+const LogIn = ({ onLogin }) => {
   // estados para mostrar y dejar de mostrar el modal
   const [show, setShow] = useState(false);
   const onClose = () => setShow(false);
@@ -34,15 +34,17 @@ const LogIn = ({ setIsLoggedIn, loggedIn }) => {
       // setShow(true); (modal codificado mas abajo)
 
       // falta agregar logica para comparar y validar datos ingresados en el registro (SignIn)
-      setIsLoggedIn(true);
+      //setIsLoggedIn(true);
 
       // si son correctos (logueo true), redirecciona a cartelera. falta logica
       // if (loggedIn) {
       //   navigate("/movies", { replace: true });
       // }
+      const loginUser = {userName: user, email:user, password:password }
+      onLogin(loginUser);
     }
     // x el momento queda una redireccion automatica hacia cartelera para pruebas.
-    navigate("/movies", { replace: true });
+    //navigate("/movies", { replace: true });
     // alerta no utilizada setAlert(true);
   };
 
@@ -107,6 +109,7 @@ const LogIn = ({ setIsLoggedIn, loggedIn }) => {
 export default LogIn;
 
 LogIn.propTypes = {
-  setIsLoggedIn: PropTypes.func.isRequired,
-  loggedIn: PropTypes.bool,
+  onLogin: PropTypes.func.isRequired,
+  //setIsLoggedIn: PropTypes.func.isRequired,
+  //loggedIn: PropTypes.bool,
 };
