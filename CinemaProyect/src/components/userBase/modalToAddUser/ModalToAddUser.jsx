@@ -32,7 +32,7 @@ const ModalToAddUser = ({ show, handleClose, addUser }) => {
 
   const OnAddUser = () => {
     const user = {
-      id: 1,
+      id: Math.random(),
       userName: userName,
       email: email,
       password: password,
