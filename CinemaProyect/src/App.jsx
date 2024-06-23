@@ -32,50 +32,50 @@ function App() {
   const Users = [
     {
       id: 1,
-      username: "Fabri",
+      userName: "Fabri",
       email: "Fabri@gmail.com",
       password: "12345",
-      showsBuyed: "",
+      showsBuyed: [],
       type: "client",
     },
     {
       id: 2,
-      username: "Rosa",
+      userName: "Rosa",
       email: "rosita@gmail.com",
       password: "12345",
-      showsBuyed: "",
+      showsBuyed: [],
       type: "client",
     },
     {
       id: 3,
-      username: "Pepito",
+      userName: "Pepito",
       email: "elpepe@gmail.com",
       password: "12345",
-      showsBuyed: "",
+      showsBuyed: [],
       type: "client",
     },
     {
       id: 4,
-      username: "Juani",
+      userName: "Juani",
       email: "juani@gmail.com",
       password: "12345",
-      showsBuyed: "",
+      showsBuyed: [],
       type: "client",
     },
     {
       id: 5,
-      username: "Gaston",
+      userName: "Gaston",
       email: "fercho@gmail.com",
       password: "12345",
-      showsBuyed: "",
+      showsBuyed: [],
       type: "client",
     },
     {
       id: 6,
-      username: "Tomi",
+      userName: "Tomi",
       email: "wuawua@gmail.com",
       password: "12345",
-      showsBuyed: "",
+      showsBuyed: [],
       type: "client",
     },
   ];
@@ -86,6 +86,12 @@ function App() {
   const onDeletUserHandler = (idUserDelete) => {
     const listUpdated = listUsers.filter((user) => user.id !== idUserDelete);
     setListUser(listUpdated);
+  };
+
+  //Funcion para agregar usuario a la base (luego debera remplazarce la constante por la base de datos y que los cambios impacten en ella)
+  const addUserHandler = (user) => {
+    const newUser = { ...user };
+    setListUser((prev) => [newUser, ...prev]);
   };
   //--------------------------------------------------------------------------------------------------------------------------------------
 
@@ -213,6 +219,7 @@ function App() {
         <UserBase
           listUsers={listUsers}
           onDeletUserHandler={onDeletUserHandler}
+          addUser={addUserHandler}
         />
       ),
     },

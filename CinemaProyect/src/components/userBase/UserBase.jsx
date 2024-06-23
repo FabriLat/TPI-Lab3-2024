@@ -4,8 +4,10 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import ModalToAddUser from "./modalToAddUser/ModalToAddUser";
+import { useState } from "react";
 
-const UserBase = ({ listUsers, onDeletUserHandler }) => {
+const UserBase = ({ listUsers, onDeletUserHandler, addUser }) => {
   const listMapped = listUsers.map((user) => (
     <User
       key={Math.random()}
@@ -16,6 +18,11 @@ const UserBase = ({ listUsers, onDeletUserHandler }) => {
       deleteUser={onDeletUserHandler}
     />
   ));
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
     <>
@@ -32,8 +39,15 @@ const UserBase = ({ listUsers, onDeletUserHandler }) => {
               <strong>Rol</strong>
             </Col>
             <Col className="d-flex justify-content-end">
-              <Button variant="success">+ Agregar usuario</Button>
+              <Button variant="success" onClick={handleShow}>
+                + Agregar usuario
+              </Button>
             </Col>
+            <ModalToAddUser
+              show={show}
+              handleClose={handleClose}
+              addUser={addUser}
+            />
           </Row>
           <Col md={{ span: 12, offset: 0 }}>
             <ListGroup
