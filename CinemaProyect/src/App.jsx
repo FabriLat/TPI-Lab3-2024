@@ -280,7 +280,7 @@ function App() {
       // ruta protegida, solo si te logueaste podes acceder. XD
       element: (
         <Protected isLoggedIn={isLoggedIn}>
-          <MoviesDashboard />
+          <MoviesDashboard movies={movies} />
         </Protected>
       ),
     },

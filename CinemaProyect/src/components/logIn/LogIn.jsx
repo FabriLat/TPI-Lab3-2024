@@ -44,7 +44,7 @@ const LogIn = ({ onLogin }) => {
       onLogin(loginUser);
     }
     // x el momento queda una redireccion automatica hacia cartelera para pruebas.
-    //navigate("/movies", { replace: true });
+    navigate("/movies", { replace: true });
     // alerta no utilizada setAlert(true);
   };
 

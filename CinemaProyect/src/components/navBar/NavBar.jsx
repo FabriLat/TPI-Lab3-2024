@@ -18,7 +18,7 @@ const NavBar = () => {
         <ul className="nav justify-content-between">
           <Col md={3} className="d-flex align-items-center">
             <li className="m-2">
-              <a className="navbar-brand" href="#">
+              <a className="navbar-brand" href="/">
                 <img
                   src="https://ih1.redbubble.net/image.4839257361.1382/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg"
                   width="70"
@@ -28,7 +28,7 @@ const NavBar = () => {
               </a>
             </li>
             <li className="m-2">
-              <a className="nav-link link-dark" href="#">
+              <a className="nav-link link-dark" href="/">
                 DRAGON CINEMA
               </a>
             </li>
