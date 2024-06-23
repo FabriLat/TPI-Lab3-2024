@@ -1,35 +1,12 @@
 import { Card, Container, Button, Col, Row } from "react-bootstrap";
 import PropTypes from "prop-types";
 import NavBar from "../navBar/NavBar";
-import { useEffect, useState } from "react";
 // import { NavigationContext } from "../services/navigation/navigation.context";
 // import { useEffect } from "react";
 // import { useContext } from "react";
 
-const MoviesDashboard = () => {
+const MoviesDashboard = ({movies}) => {
 
-  const [movies, setMovies] = useState([]); // array vacio
-
-
-  // llamada a la FAKE API. useEffect asegura q se ejecute una vez q el componente se renderice
-  useEffect(() => {
-    // defino funcion asincrona para fetchear la data
-    const fetchMovies = async () =>{
-      // intenta fetchear
-      try{
-        const response = await fetch("http://localhost:8000/movies");
-        const movieData = await response.json();
-        setMovies(movieData); //¡seteo movies
-      } // si no puede, muestra error
-      catch (error){
-          console.log("Error al solicitar películas a la base de datos:" , error);
-      }
-    };
-    fetchMovies();
-
-  }, []); // dependencia vacía del useEffect significa que se ejecutará solo una vez después del primer renderizado
-
-  
   // lo quité porque daba errores multiples
 
   // consume contexto

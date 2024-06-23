@@ -8,8 +8,27 @@ import Protected from "./routes/Protected";
 import NotFound from "./routes/NotFound";
 import UserBase from "./components/userBase/UserBase";
 
+
 function App() {
-  
+
+  const [movies, setMovies] = useState([]);
+
+  //------------------------------------------------------------------------------
+  // FETCHEO A MOVIES
+  useEffect(() => {
+    const fetchMovies = async () => {
+      try {
+        const response = await fetch("http://localhost:8000/movies");
+        const movieData = await response.json();
+        setMovies(movieData);
+      } catch (error) {
+        console.log("Error al solicitar películas a la base de datos:", error);
+      }
+    };
+    fetchMovies();
+  }, []); 
+  // -----------------------------------------------------------------------------------------------------------------------------------------------------------
+
   // estado para manejar log in
   const [isLoggedIn, setIsLoggedIn] = useState(false); // inicialmente no se logueó el usuario
 
@@ -248,12 +267,14 @@ function App() {
   const router = createBrowserRouter([
     //Para agregar rutas protegidas necesitamos terminar la cartelera q es una ruta protegida porque el dashboard,
     //el login y register podría acceder cualquiera, y para la cartelera se necesita loguear/registrar.
-    { path: "/", element: <Dashboard /> },
+    { path: "/", 
+      element: <Dashboard /> },
     {
       path: "/login",
       element: <LogIn onLogin={loginUserHandler} />,
     },
-    { path: "/signin", element: <SignIn /> },
+    { path: "/signin", 
+      element: <SignIn /> },
     {
       path: "/movies",
       // ruta protegida, solo si te logueaste podes acceder. XD
@@ -274,7 +295,8 @@ function App() {
         />
       ),
     },
-    { path: "*", element: <NotFound /> }, // cuando no encuentra ninguna ruta, not found
+    { path: "*", 
+      element: <NotFound /> },
   ]);
 
   return (
