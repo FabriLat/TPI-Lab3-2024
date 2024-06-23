@@ -93,6 +93,22 @@ function App() {
     const newUser = { ...user };
     setListUser((prev) => [newUser, ...prev]);
   };
+
+  const ModifyUserHandler = (idUser, data) => {
+    const listUpdated = listUsers.map((user) => {
+      if (user.id === idUser) {
+        return {
+          ...user,
+          userName: data.uName,
+          email: data.email,
+          type: data.rol,
+        };
+      }
+      return user; // Devuelve el usuario original si no es el que se está modificando
+    });
+
+    setListUser(listUpdated);
+  };
   //--------------------------------------------------------------------------------------------------------------------------------------
 
   //Una pelicula puede tener varias funciones.
@@ -220,6 +236,7 @@ function App() {
           listUsers={listUsers}
           onDeletUserHandler={onDeletUserHandler}
           addUser={addUserHandler}
+          modifyUser={ModifyUserHandler}
         />
       ),
     },

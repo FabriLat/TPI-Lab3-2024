@@ -7,7 +7,7 @@ import Col from "react-bootstrap/Col";
 import ModalToAddUser from "./modalToAddUser/ModalToAddUser";
 import { useState } from "react";
 
-const UserBase = ({ listUsers, onDeletUserHandler, addUser }) => {
+const UserBase = ({ listUsers, onDeletUserHandler, addUser, modifyUser }) => {
   const listMapped = listUsers.map((user) => (
     <User
       key={Math.random()}
@@ -16,6 +16,7 @@ const UserBase = ({ listUsers, onDeletUserHandler, addUser }) => {
       email={user.email}
       type={user.type}
       deleteUser={onDeletUserHandler}
+      modifyUser={modifyUser}
     />
   ));
 
