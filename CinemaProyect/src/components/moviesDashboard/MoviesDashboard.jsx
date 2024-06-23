@@ -31,8 +31,8 @@ const MoviesDashboard = ({ initialMovies }) => {
                 <Card.Img  style={{ "height": "350px", "objectFit": "cover"}} variant="top" src={movie.image} />
                 <Card.Body style={{"backgroundColor": "black"}}>
                   <Card.Title style={{"color": "white", "backgroundColor": "black"}}>{movie.title}</Card.Title>
-                  <Card.Text style={{"backgroundColor": "black"}}>Duración: {movie.runTime} min</Card.Text>
-                  <Card.Text  style={{"backgroundColor": "black"}}>Rating: {movie.rating} / 5</Card.Text>
+                  <Card.Text style={{"backgroundColor": "black", "color": "white"}}>Duración: {movie.runTime} min</Card.Text>
+                  <Card.Text  style={{"backgroundColor": "black", "color": "white"}}>Rating: {movie.rating} / 5</Card.Text>
                   <Button variant="secondary">Comprar entrada</Button>
                 </Card.Body>
               </Card>
