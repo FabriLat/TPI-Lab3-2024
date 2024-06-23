@@ -46,7 +46,7 @@ const ModifyUserModal = ({
 
     setTimeout(() => {
       alert("Se realizo la modificacion exitosamente!!");
-    }, 300);
+    }, 200);
   };
 
   return (

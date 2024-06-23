@@ -51,7 +51,7 @@ const ModalToAddUser = ({ show, handleClose, addUser }) => {
 
     setTimeout(() => {
       alert("Se registro el usuario exitosamente!!");
-    }, 300);
+    }, 200);
   };
 
   return (

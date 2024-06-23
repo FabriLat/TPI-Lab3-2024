@@ -12,6 +12,9 @@ const User = ({ id, userName, email, type, deleteUser, modifyUser }) => {
     );
     if (confirmed) {
       deleteUser(id);
+      setTimeout(() => {
+        alert("Usuario eliminado exitosamente!!");
+      }, 200);
     }
   };
 
