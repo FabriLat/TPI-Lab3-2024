@@ -2,11 +2,14 @@ import { useContext } from "react";
 import { NavigationContext } from "../services/navigation/navigation.context";
 import { Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { ThemeContext } from "../services/theme/theme.context";
 
 const NavBar = () => {
   const navigate = useNavigate();
-  // consumo nav items del contexto para llenar componente NavBar
+
+
   const { navItems} = useContext(NavigationContext);
+  const {toggleTheme} = useContext(ThemeContext);
 
 
   return (
@@ -37,7 +40,7 @@ const NavBar = () => {
                 <button
                   className="btn btn-dark"
                   style={{ whiteSpace: "nowrap" }}
-                  onClick={() => navigate(item.link)}>
+                  onClick={() => item.id===1 ? toggleTheme() : navigate(item.link)}>
                   {item.text}
                 </button>
               </li>

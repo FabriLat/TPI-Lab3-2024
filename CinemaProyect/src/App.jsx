@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Dashboard from "./components/dashboard/Dashboard";
 import SignIn from "./components/signIn/SignIn";
 import LogIn from "./components/logIn/LogIn";
@@ -8,7 +8,9 @@ import Protected from "./routes/Protected";
 import NotFound from "./routes/NotFound";
 import UserBase from "./components/userBase/UserBase";
 
+
 function App() {
+
   // estado para manejar log in
   const [isLoggedIn, setIsLoggedIn] = useState(false); // inicialmente no se logueó el usuario
 
@@ -228,10 +230,9 @@ function App() {
   ]);
 
   return (
-  
-  <div>
-    <RouterProvider router={router} />
-  </div>
+    <div>
+      <RouterProvider router={router} />
+    </div>
   );
 }
 

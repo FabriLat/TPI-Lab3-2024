@@ -1,21 +1,24 @@
 import { Card, Container, Button, Col, Row } from "react-bootstrap";
 import PropTypes from "prop-types";
 import NavBar from "../navBar/NavBar";
-import { NavigationContext } from "../services/navigation/navigation.context";
-import { useEffect } from "react";
-import { useContext } from "react";
+// import { NavigationContext } from "../services/navigation/navigation.context";
+// import { useEffect } from "react";
+// import { useContext } from "react";
 
 const MoviesDashboard = ({ initialMovies }) => {
-  // consume contexto
-  const {updateNavItems} = useContext(NavigationContext);
 
-  useEffect(() => {
-    updateNavItems([
-      { id: 1, text: "Cartelera", link: "/movies"},
-      { id: 2, text: 'Sobre Nosotros', link: '/profile' },
-      { id: 3, text: 'Cerrar Sesión', link: '/' },
-    ]);
-  });
+  // lo quité porque daba errores multiples
+
+  // consume contexto
+  // const {updateNavItems} = useContext(NavigationContext);
+
+  // useEffect(() => {
+  //   updateNavItems([
+  //     { id: 1, text: "Cambiar tema"},
+  //     { id: 2, text: 'Sobre Nosotros', link: '/profile' },
+  //     { id: 3, text: 'Cerrar Sesión', link: '/' },
+  //   ]);
+  // });
   return (
     <>
     <NavBar/>
