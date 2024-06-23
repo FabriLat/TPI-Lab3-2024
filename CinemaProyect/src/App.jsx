@@ -7,6 +7,7 @@ import MoviesDashboard from "./components/moviesDashboard/MoviesDashboard";
 import Protected from "./routes/Protected";
 import NotFound from "./routes/NotFound";
 import UserBase from "./components/userBase/UserBase";
+
 function App() {
   // estado para manejar log in
   const [isLoggedIn, setIsLoggedIn] = useState(false); // inicialmente no se logueó el usuario
@@ -208,7 +209,7 @@ function App() {
       ),
     },
     {
-      path: "/userBase",
+      path: "/userbase",
       element: (
         <UserBase
           listUsers={listUsers}
@@ -219,7 +220,12 @@ function App() {
     { path: "*", element: <NotFound /> }, // cuando no encuentra ninguna ruta, not found
   ]);
 
-  return <div>{<RouterProvider router={router} />}</div>;
+  return (
+  
+  <div>
+    <RouterProvider router={router} />
+  </div>
+  );
 }
 
 export default App;
