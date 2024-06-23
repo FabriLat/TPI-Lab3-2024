@@ -12,7 +12,7 @@ const UserBase = ({ listUsers, onDeletUserHandler, addUser }) => {
     <User
       key={Math.random()}
       id={user.id}
-      userName={user.username}
+      userName={user.userName}
       email={user.email}
       type={user.type}
       deleteUser={onDeletUserHandler}
