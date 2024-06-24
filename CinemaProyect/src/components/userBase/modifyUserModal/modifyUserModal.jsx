@@ -14,8 +14,8 @@ const ModifyUserModal = ({
   rol,
 }) => {
   const [rolUser, setRolUser] = useState(rol || "client");
-  const [email, setEmail] = useState(userEmail || "");
-  const [userName, setUserName] = useState(nameUser || "");
+  const [email, setEmail] = useState(userEmail);
+  const [userName, setUserName] = useState(nameUser);
 
   const clientUser = () => {
     setRolUser("client");
@@ -45,8 +45,8 @@ const ModifyUserModal = ({
   const OnModifyUser = async () => {
     const newData = {
       email: email,
-      uName: userName,
-      rol: rolUser,
+      userName: userName,
+      type: rolUser,
     };
 
     try {

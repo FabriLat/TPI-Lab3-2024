@@ -59,9 +59,7 @@ function App() {
         method: "DELETE",
       });
 
-      setTimeout(() => {
-        fetchUsers();
-      }, 500); //vuelvo a solicitar la base de datos para actualizar el estado con los cambios que se realizaron y rerenderizar (con delay para dar tiempo a que impacten cambios)
+      await fetchUsers();
     } catch (error) {
       console.log("Error al eliminar usuario de la base de datos:", error);
     }
@@ -78,9 +76,7 @@ function App() {
         body: JSON.stringify(user),
       });
 
-      setTimeout(() => {
-        fetchUsers();
-      }, 500);
+      await fetchUsers();
     } catch (error) {
       console.log("Error al agregar usuario a la base de datos:", error);
     }
@@ -89,17 +85,26 @@ function App() {
   // Funcion para modificar usuario
   const ModifyUserHandler = async (idUser, data) => {
     try {
+      // Obtengo el usuario a modificar
+      const response = await fetch(`http://localhost:8000/users/${idUser}`);
+      const currentUser = await response.json();
+
+      // Combino los datos nuevos con los datos existentes
+      const updatedUser = {
+        ...currentUser,
+        ...data,
+      };
+
+      // Actualizo el usuario en la base sin que se eliminen sus propiedades que no son modificadas
       await fetch(`http://localhost:8000/users/${idUser}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(updatedUser),
       });
 
-      setTimeout(() => {
-        fetchUsers();
-      }, 500);
+      await fetchUsers();
     } catch (error) {
       console.log("Error al modificar usuario en la base de datos:", error);
     }
