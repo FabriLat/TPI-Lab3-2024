@@ -7,6 +7,7 @@ import MoviesDashboard from "./components/moviesDashboard/MoviesDashboard";
 import Protected from "./routes/Protected";
 import NotFound from "./routes/NotFound";
 import UserBase from "./components/userBase/UserBase";
+import AdminMoviesDashboard from "./components/adminMoviesDashboard/AdminMoviesDashboard";
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -159,7 +160,10 @@ function App() {
         />
       ),
     },
-    { path: "*", element: <NotFound /> },
+    { path: "/adminmovies",
+      element: <AdminMoviesDashboard movies={movies}/>
+    },
+    { path: "*", element: <NotFound /> }
   ]);
 
   return (
