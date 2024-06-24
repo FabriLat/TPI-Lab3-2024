@@ -115,6 +115,7 @@ function App() {
     if (loginUser.length > 0) {
       console.log(loginUser);
       setIsLoggedIn(true);
+      return true;
     } else {
       setIsLoggedIn(false);
       alert("Usuario o contraseña incorrecto. Intente nuevamente.");

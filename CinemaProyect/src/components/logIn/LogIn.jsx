@@ -26,9 +26,11 @@ const LogIn = ({ onLogin }) => {
     if (user.length === 0) {
       userRef.current.style.borderColor = "red";
       userRef.current.focus();
+      return;
     } else if (password.length === 0) {
       passRef.current.style.borderColor = "red";
       passRef.current.focus();
+      return;
     } else {
       // MODAL PARA CUANDO EL USUARIO QUIERE LOGUEARSE ANTES DE REGISTRARSE PREVIAMENTE
       // setShow(true); (modal codificado mas abajo)
@@ -41,10 +43,17 @@ const LogIn = ({ onLogin }) => {
       //   navigate("/movies", { replace: true });
       // }
       const loginUser = {userName: user, email:user, password:password }
-      onLogin(loginUser);
+      const loggedUser = onLogin(loginUser);
+      if (loggedUser === true)
+        {
+          navigate("/movies", { replace: true });
+        }else{
+          return;
+        }
+      
     }
     // x el momento queda una redireccion automatica hacia cartelera para pruebas.
-    navigate("/movies", { replace: true });
+   
     // alerta no utilizada setAlert(true);
   };
 
