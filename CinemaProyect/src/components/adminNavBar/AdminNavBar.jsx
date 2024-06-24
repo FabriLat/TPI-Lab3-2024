@@ -3,13 +3,12 @@ import { Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "../services/theme/theme.context";
 
-const NavBar = () => {
+const AdminNavBar = () => {
 
   const navItems = [{id: 1, text: "Cambiar tema"},
     { id: 2, text: 'Sobre Nosotros', link: '/about' },
     { id: 3, text: 'Cartelera', link: '/movies' },
-    { id: 4, text: 'Iniciar sesión', link: '/login' },
-    { id: 5, text: "Registrarse", link: '/signin'}]
+    { id: 4, text: 'Usuarios', link: '/userbase' }]
 
   const navigate = useNavigate();
   const {toggleTheme} = useContext(ThemeContext);
@@ -55,4 +54,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default AdminNavBar;

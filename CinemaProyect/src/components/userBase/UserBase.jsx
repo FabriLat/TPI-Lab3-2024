@@ -6,6 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ModalToAddUser from "./modalToAddUser/ModalToAddUser";
 import { useState } from "react";
+import AdminNavBar from "../adminNavBar/AdminNavBar";
 
 const UserBase = ({ listUsers, onDeletUserHandler, addUser, modifyUser }) => {
   const listMapped = listUsers.map((user) => (
@@ -27,6 +28,7 @@ const UserBase = ({ listUsers, onDeletUserHandler, addUser, modifyUser }) => {
 
   return (
     <>
+    <AdminNavBar/>
       <h1 className="text-center mt-5" style={{ marginBottom: "170px" }}>
         Base de Datos de Usuarios
       </h1>
