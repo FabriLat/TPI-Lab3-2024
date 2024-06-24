@@ -138,7 +138,7 @@ function App() {
       path: "/login",
       element: <LogIn onLogin={loginUserHandler} />,
     },
-    { path: "/signin", element: <SignIn /> },
+    { path: "/signin", element: <SignIn onRegister={addUserHandler} /> },
     {
       path: "/movies",
       // ruta protegida, solo si te logueaste podes acceder. XD

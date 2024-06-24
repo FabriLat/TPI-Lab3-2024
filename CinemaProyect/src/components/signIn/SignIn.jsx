@@ -2,7 +2,7 @@ import { Form, Row, Col, Button } from "react-bootstrap";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const SignIn = () => {
+const SignIn = ({ onRegister }) => {
   const navigate = useNavigate();
   // useRef para acceder al dom
   const userRef = useRef(null);
@@ -25,7 +25,6 @@ const SignIn = () => {
     const email = emailRef.current.value;
 
     if (user.length === 0) {
-
       setErrors((prevErrors) => ({
         ...prevErrors,
         user: true,
@@ -34,7 +33,6 @@ const SignIn = () => {
         email: false,
       }));
     } else if (email.length === 0) {
-
       setErrors((prevErrors) => ({
         ...prevErrors,
         user: false,
@@ -50,7 +48,6 @@ const SignIn = () => {
         secondPassword: false,
         email: false,
       }));
-
     } else if (secondPassword.length === 0) {
       setErrors((prevErrors) => ({
         ...prevErrors,
@@ -59,10 +56,21 @@ const SignIn = () => {
         secondPassword: true,
         email: false,
       }));
-  
     } else {
-      console.log("Registro exitoso");
-      navigate("/login", { replace: true });
+      if (password === secondPassword) {
+        const userRegister = {
+          id: Math.random(),
+          userName: user,
+          email: email,
+          password: password,
+          showsBuyed: 0,
+          type: "client",
+        };
+        onRegister(userRegister);
+        navigate("/login", { replace: true });
+      } else {
+        alert("Las contraseñas ingresadas no coinciden, vuelva a intentarlo.");
+      }
     }
   };
 
