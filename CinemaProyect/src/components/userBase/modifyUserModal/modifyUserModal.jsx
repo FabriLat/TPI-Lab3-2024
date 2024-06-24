@@ -13,9 +13,9 @@ const ModifyUserModal = ({
   nameUser,
   rol,
 }) => {
-  const [rolUser, setRolUser] = useState(rol);
-  const [email, setEmail] = useState(userEmail);
-  const [userName, setUserName] = useState(nameUser);
+  const [rolUser, setRolUser] = useState(rol || "client");
+  const [email, setEmail] = useState(userEmail || "");
+  const [userName, setUserName] = useState(nameUser || "");
 
   const clientUser = () => {
     setRolUser("client");
@@ -33,20 +33,37 @@ const ModifyUserModal = ({
     setUserName(event.target.value);
   };
 
-  const OnModifyUser = () => {
+  const modifyUserAsync = async (idUser, newData) => {
+    try {
+      await modifyUser(idUser, newData);
+    } catch (error) {
+      console.log("Error al modificar usuario:", error);
+      throw error;
+    }
+  };
+
+  const OnModifyUser = async () => {
     const newData = {
       email: email,
       uName: userName,
       rol: rolUser,
     };
 
-    modifyUser(idUser, newData);
+    try {
+      await modifyUserAsync(idUser, newData);
+      handleClose();
 
-    handleClose();
-
-    setTimeout(() => {
-      alert("Se realizo la modificacion exitosamente!!");
-    }, 200);
+      setTimeout(() => {
+        alert("Se realizó la modificación exitosamente!!");
+      }, 200);
+    } catch (error) {
+      // Manejar el error de modificación aquí si es necesario
+      console.log("Error al modificar usuario en el modal:", error);
+      // Puedes mostrar un mensaje de error si lo deseas
+      alert(
+        "Hubo un error al modificar el usuario. Por favor, intenta de nuevo."
+      );
+    }
   };
 
   return (
@@ -89,7 +106,7 @@ const ModifyUserModal = ({
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Dropdown required rows={3}>
+              <Dropdown required value={rolUser}>
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
                   {rolUser.charAt(0).toUpperCase() + rolUser.slice(1)}
                 </Dropdown.Toggle>
