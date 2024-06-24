@@ -30,8 +30,8 @@ const NavBar = () => {
                 />
               </a>
             </li>
-            <li className="m-2">
-              <a className="nav-link link-dark" href="/">
+            <li className="m-2" >
+              <a style={{"fontFamily": "Poppins","color":"white"}} className="nav-link link-dark" href="/">
                 DRAGON CINEMA
               </a>
             </li>

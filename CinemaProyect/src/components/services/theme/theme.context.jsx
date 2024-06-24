@@ -13,11 +13,13 @@ export const ThemeContextProvider = ({ children }) => {
     localStorage.setItem("theme", newTheme);
   };
 
+//Colores degradado violeta: #634ac8, #000000
+
   useEffect(() => {
     if (theme === "dark") {
       document.body.style.backgroundColor = "black";
     } else {
-      document.body.style.backgroundColor = "#817a9e";
+      document.body.style.backgroundImage = "linear-gradient(to right, #000000, #494949)";
     }
   }, [theme]);
 

@@ -10,7 +10,7 @@
 
 body {
   margin: 0;
-  background-color: #817a9e;
+  background-color: linear-gradient(to right, #000000, #494949);
   color: white;
 }
 

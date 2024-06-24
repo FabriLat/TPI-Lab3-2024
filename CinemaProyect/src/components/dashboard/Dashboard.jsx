@@ -4,10 +4,10 @@ import NavBar from "../navBar/NavBar";
 const Dashboard = () => {
 
   return (
-    <>
+    <div className="">
       <NavBar/> 
       <Container className="text-center">
-        <h1 className="mb-4" style={{"fontFamily": "Poppins"}}>Bienvenido</h1>
+        <h1 className="mb-4">Bienvenido</h1>
         <h4 className="mb-4">Peliculas destacadas</h4>
         <Carousel className="mb-4" style={{ maxWidth: '1620px' }}>
           <Carousel.Item>
@@ -36,7 +36,7 @@ const Dashboard = () => {
           </Carousel.Item>
         </Carousel>
       </Container>
-    </>
+    </div>
   );
 };
 
