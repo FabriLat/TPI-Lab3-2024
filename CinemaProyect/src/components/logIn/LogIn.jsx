@@ -1,10 +1,15 @@
 import { Form, Row, Col, Button } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useRef, useState, useContext } from "react";
 import { Modal } from "react-bootstrap";
+import { UserContext } from "../services/authentication/user.context";
 
-const LogIn = ({ onLogin }) => {
+
+
+const LogIn = ({ users }) => {
+  const { setUser } = useContext(UserContext);
+
   // estados para mostrar y dejar de mostrar el modal
   const [show, setShow] = useState(false);
   const onClose = () => setShow(false);
@@ -16,7 +21,6 @@ const LogIn = ({ onLogin }) => {
   // useRef para acceder al dom
   const userRef = useRef(null);
   const passRef = useRef(null);
-
 
   const logInHandler = (event) => {
     event.preventDefault();
@@ -42,18 +46,33 @@ const LogIn = ({ onLogin }) => {
       // if (loggedIn) {
       //   navigate("/movies", { replace: true });
       // }
-      const loginUser = {userName: user, email:user, password:password }
-      const loggedUser = onLogin(loginUser);
-      if (loggedUser === true)
-        {
-          navigate("/movies", { replace: true });
-        }else{
-          return;
-        }
       
+      let userToAdd = {}
+      let loggedUser = users.filter(
+        (u) =>
+          (u.userName === user || u.email === user) &&
+          u.password === password
+      );
+      
+      if (loggedUser.length > 0){ userToAdd = {id: loggedUser[0].id,
+        userName: loggedUser[0].userName,
+        email: loggedUser[0].email,
+        showsBuyed: loggedUser[0].showsBuyed,
+        type: loggedUser[0].type,
+      }}
+     
+      console.log(userToAdd)
+      if (loggedUser.length > 0) {
+        setUser(userToAdd);
+        loggedUser = []
+        console.log(loggedUser, loggedUser.length)
+        navigate("/movies", { replace: true });
+      } else {  
+        alert("Usuario o contraseña incorrectos. Intente nuevamente.")
+        return;
+      }
     }
     // x el momento queda una redireccion automatica hacia cartelera para pruebas.
-   
     // alerta no utilizada setAlert(true);
   };
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Dashboard from "./components/dashboard/Dashboard";
 import SignIn from "./components/signIn/SignIn";
 import LogIn from "./components/logIn/LogIn";
@@ -8,11 +8,14 @@ import Protected from "./routes/Protected";
 import NotFound from "./routes/NotFound";
 import UserBase from "./components/userBase/UserBase";
 import AdminMoviesDashboard from "./components/adminMoviesDashboard/AdminMoviesDashboard";
+import {UserContext} from "./components/services/authentication/user.context";
 
 function App() {
   const [movies, setMovies] = useState([]);
 
+  const { user } = useContext(UserContext);
   // FETCHEO A MOVIES
+
   useEffect(() => {
     const fetchMovies = async () => {
       try {
@@ -28,9 +31,6 @@ function App() {
 
   //--------------------------------------------------------------------------------------------------------------------------------------
   // Funciones relacionadas con usuarios
-
-  // estado para manejar log in
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // inicialmente no se logueó el usuario
 
   const [users, setUsers] = useState([]);
 
@@ -112,23 +112,6 @@ function App() {
   };
   //--------------------------------------------------------------------------------------------------------------------------------------
 
-  const loginUserHandler = (user) => {
-    const loginUser = users.filter(
-      (u) =>
-        (u.userName === user.userName || u.email === user.email) &&
-        u.password === user.password
-    );
-    if (loginUser.length > 0) {
-      console.log(loginUser);
-      setIsLoggedIn(true);
-      return true;
-    } else {
-      setIsLoggedIn(false);
-      alert("Usuario o contraseña incorrecto. Intente nuevamente.");
-      return;
-    }
-  };
-
   //--------------------------------------------------------------------------------------------------------------------------------------
 
   const router = createBrowserRouter([
@@ -137,14 +120,14 @@ function App() {
     { path: "/", element: <Dashboard /> },
     {
       path: "/login",
-      element: <LogIn onLogin={loginUserHandler} />,
+      element: <LogIn users={users} />,
     },
     { path: "/signin", element: <SignIn onRegister={addUserHandler} /> },
     {
       path: "/movies",
       // ruta protegida, solo si te logueaste podes acceder. XD
       element: (
-        <Protected isLoggedIn={isLoggedIn}>
+        <Protected isLoggedIn={user ? true : false}>
           <MoviesDashboard movies={movies} />
         </Protected>
       ),
@@ -160,16 +143,14 @@ function App() {
         />
       ),
     },
-    { path: "/adminmovies",
-      element: <AdminMoviesDashboard movies={movies}/>
-    },
-    { path: "*", element: <NotFound /> }
+    { path: "/adminmovies", element: <AdminMoviesDashboard movies={movies} /> },
+    { path: "*", element: <NotFound /> },
   ]);
 
   return (
-    <div>
-      <RouterProvider router={router} />
-    </div>
+      <div>
+        <RouterProvider router={router} />
+      </div>
   );
 }
 
