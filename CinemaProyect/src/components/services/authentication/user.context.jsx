@@ -10,13 +10,6 @@ export const UserContextProvider = ({ children }) => {
     const [user, setUser] = useState(userValue); // inicialmente no se logueó el usuario
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-  }, []);
-
-  useEffect(() => {
     if (user) {
       localStorage.setItem("user", JSON.stringify(user));
     } else {
