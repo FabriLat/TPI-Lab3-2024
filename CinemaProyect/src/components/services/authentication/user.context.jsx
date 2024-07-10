@@ -2,10 +2,12 @@ import { createContext, useState, useEffect } from "react";
 
 export const UserContext = createContext();
 
+const userValue = JSON.parse(localStorage.getItem("user"));
+
 export const UserContextProvider = ({ children }) => {
 
     // estado para manejar log in
-    const [user, setUser] = useState(null); // inicialmente no se logueó el usuario
+    const [user, setUser] = useState(userValue); // inicialmente no se logueó el usuario
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");

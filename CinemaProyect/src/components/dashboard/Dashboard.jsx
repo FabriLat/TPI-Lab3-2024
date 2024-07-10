@@ -1,11 +1,15 @@
 import { Carousel, Container } from "react-bootstrap";
-import NavBar from "../navBar/NavBar";
+import { useContext } from "react";
+import { UserContext } from "../services/authentication/user.context";
+import AdminNavBar from "../adminNavBar/AdminNavBar";
+import ClientNavBar from "../clientNavBar/ClientNavBar";
 
 const Dashboard = () => {
+  const { user } = useContext(UserContext)
 
   return (
     <div className="">
-      <NavBar/> 
+      {user && user.type === "client" ? <ClientNavBar/> : <AdminNavBar/>}
       <Container className="text-center">
         <h1 className="mb-4">Bienvenido</h1>
         <h4 className="mb-4">Peliculas destacadas</h4>

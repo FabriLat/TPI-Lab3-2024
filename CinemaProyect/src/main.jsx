@@ -7,10 +7,10 @@ import { UserContextProvider } from "./components/services/authentication/user.c
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ThemeContextProvider>
-      <UserContextProvider>
+    <UserContextProvider>
+      <ThemeContextProvider>
         <App />
-      </UserContextProvider>
-    </ThemeContextProvider>
+      </ThemeContextProvider>
+    </UserContextProvider>
   </React.StrictMode>
 );

@@ -8,7 +8,9 @@ const AdminNavBar = () => {
   const navItems = [{id: 1, text: "Cambiar tema"},
     { id: 2, text: 'Sobre Nosotros', link: '/about' },
     { id: 3, text: 'Cartelera', link: '/movies' },
-    { id: 4, text: 'Usuarios', link: '/userbase' }]
+    { id: 4, text: 'Usuarios', link: '/userbase' },
+    {id: 5, text: 'Peliculas admin', link: '/adminmovies' },
+    {id: 6, text: 'Cerrar sesión', link: '/' }]
 
   const navigate = useNavigate();
   const {toggleTheme} = useContext(ThemeContext);
