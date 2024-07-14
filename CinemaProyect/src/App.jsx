@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import Dashboard from "./components/dashboard/Dashboard";
 import SignIn from "./components/signIn/SignIn";
 import LogIn from "./components/logIn/LogIn";
@@ -8,12 +8,11 @@ import Protected from "./routes/Protected";
 import NotFound from "./routes/NotFound";
 import UserBase from "./components/userBase/UserBase";
 import AdminMoviesDashboard from "./components/adminMoviesDashboard/AdminMoviesDashboard";
-import {UserContext} from "./components/services/authentication/user.context";
+
 
 function App() {
   const [movies, setMovies] = useState([]);
 
-  const { user } = useContext(UserContext);
   // FETCHEO A MOVIES
 
   useEffect(() => {
@@ -126,12 +125,8 @@ function App() {
     {
       path: "/movies",
       // ruta protegida, solo si te logueaste podes acceder. XD
-      element: (
-        <Protected isLoggedIn={user ? true : false}>
-          <MoviesDashboard movies={movies} />
-        </Protected>
-      ),
-    },
+      element: 
+          <MoviesDashboard movies={movies} />},
     {
       path: "/userbase",
       element: (

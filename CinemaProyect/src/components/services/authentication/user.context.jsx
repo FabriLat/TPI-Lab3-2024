@@ -6,8 +6,7 @@ const userValue = JSON.parse(localStorage.getItem("user"));
 
 export const UserContextProvider = ({ children }) => {
 
-    // estado para manejar log in
-    const [user, setUser] = useState(userValue); // inicialmente no se logueó el usuario
+    const [user, setUser] = useState(userValue); 
 
   useEffect(() => {
     if (user) {

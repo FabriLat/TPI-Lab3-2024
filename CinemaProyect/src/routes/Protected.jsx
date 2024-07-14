@@ -1,9 +1,13 @@
 import PropTypes from "prop-types"
+import { useContext } from "react";
 import { Navigate } from "react-router-dom";
+import { UserContext } from "../components/services/authentication/user.context";
 
-const Protected = ({loggedIn, children}) => {
+const Protected = ({ children }) => {
+
+    const { user } = useContext(UserContext)
     
-    if(loggedIn === false){
+    if(!user){
         return <Navigate to="/login"></Navigate>
     }
     
