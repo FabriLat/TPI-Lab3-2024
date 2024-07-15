@@ -24,7 +24,7 @@ const Dashboard = () => {
           <Carousel.Item>
             <img
               className="d-block w-100 carousel-image"
-              src="https://www.animationxpress.com/wp-content/uploads/2020/12/shrek.jpg"
+              src="https://i0.wp.com/www.comicsonline.com/wp-content/uploads/2023/03/poster-horizontal.jpeg?resize=800%2C400"
               alt="First slide"
               style={{ maxHeight: "2400px", objectFit: "cover" }}
             />

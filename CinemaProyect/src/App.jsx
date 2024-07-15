@@ -9,7 +9,6 @@ import NotFound from "./routes/NotFound";
 import UserBase from "./components/userBase/UserBase";
 import AdminMoviesDashboard from "./components/adminMoviesDashboard/AdminMoviesDashboard";
 
-
 function App() {
   const [movies, setMovies] = useState([]);
 
@@ -125,27 +124,37 @@ function App() {
     {
       path: "/movies",
       // ruta protegida, solo si te logueaste podes acceder. XD
-      element: 
-          <MoviesDashboard movies={movies} />},
+      element: <MoviesDashboard movies={movies} />,
+    },
     {
       path: "/userbase",
       element: (
-        <UserBase
-          listUsers={users}
-          onDeletUserHandler={onDeletUserHandler}
-          addUser={addUserHandler}
-          modifyUser={ModifyUserHandler}
-        />
+        <Protected>
+          <UserBase
+            listUsers={users}
+            onDeletUserHandler={onDeletUserHandler}
+            addUser={addUserHandler}
+            modifyUser={ModifyUserHandler}
+          />
+        </Protected>
       ),
     },
-    { path: "/adminmovies", element: <AdminMoviesDashboard movies={movies} /> },
+    {
+      path: "/adminmovies",
+      element: (
+        <Protected>
+          {" "}
+          <AdminMoviesDashboard movies={movies} />{" "}
+        </Protected>
+      ),
+    },
     { path: "*", element: <NotFound /> },
   ]);
 
   return (
-      <div>
-        <RouterProvider router={router} />
-      </div>
+    <div>
+      <RouterProvider router={router} />
+    </div>
   );
 }
 
