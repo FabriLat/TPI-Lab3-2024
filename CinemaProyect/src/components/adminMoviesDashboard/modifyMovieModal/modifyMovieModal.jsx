@@ -52,6 +52,9 @@ const ModifyMovieModal = ({ show, onHide, modifyMovieHandler, movie }) => {
 
     modifyMovieHandler(updatedMovie);
     onHide();
+    setTimeout(() => {
+      alert("Se actualizó la pelicula exitosamente!!");
+    }, 200);
   };
 
   return (
