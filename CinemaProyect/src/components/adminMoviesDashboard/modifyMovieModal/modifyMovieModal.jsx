@@ -1,38 +1,34 @@
+import { useState, useEffect } from "react";
 import { Modal, Form, Button } from "react-bootstrap";
-import { useState } from "react";
+import PropTypes from "prop-types";
 
-const ModifyMovieModal = () => {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
+const ModifyMovieModal = ({ show, onHide, movie }) => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [shows, setShows] = useState("");
 
-  const changeTitleHandler = (event) => {
-    setTitle(event.target.value);
-  };
+  useEffect(() => {
+    if (movie) {
+      setTitle(movie.title);
+      setImage(movie.image);
+      setShows(movie.runTime);
+    }
+  }, [movie]);
 
-  const changeImageHandler = (event) => {
-    setImage(event.target.value);
-  };
-
-  const changeShowsHandler = (event) => {
-    setShows(event.target.value);
-  };
+  const changeTitleHandler = (event) => setTitle(event.target.value);
+  const changeImageHandler = (event) => setImage(event.target.value);
+  const changeShowsHandler = (event) => setShows(event.target.value);
 
   return (
-    <>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modificar película</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+    <Modal show={show} onHide={onHide}>
+      <Modal.Header closeButton>
+        <Modal.Title style={{ color: "black" }}>Modificar película</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        {movie ? (
           <Form>
             <Form.Group className="mb-3">
-              <Form.Label>Título</Form.Label>
+              <Form.Label    style={{ color: "black" }}>Título</Form.Label>
               <Form.Control
                 type="text"
                 value={title}
@@ -40,7 +36,7 @@ const ModifyMovieModal = () => {
               />
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Label>Imagen</Form.Label>
+              <Form.Label    style={{ color: "black" }}>Imagen</Form.Label>
               <Form.Control
                 type="text"
                 rows={3}
@@ -49,7 +45,7 @@ const ModifyMovieModal = () => {
               />
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Label>Funciones</Form.Label>
+              <Form.Label    style={{ color: "black" }}>Funciones</Form.Label>
               <Form.Control
                 onChange={changeShowsHandler}
                 type="text"
@@ -58,13 +54,25 @@ const ModifyMovieModal = () => {
               />
             </Form.Group>
           </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="danger">Cancelar</Button>
-          <Button variant="success">Modificar</Button>
-        </Modal.Footer>
-      </Modal>
-    </>
+        ) : (
+          <p>Cargando...</p>
+        )}
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="danger" onClick={onHide}>
+          Cancelar
+        </Button>
+        <Button variant="success">Modificar</Button>
+      </Modal.Footer>
+    </Modal>
   );
 };
+
+ModifyMovieModal.propTypes = {
+  show: PropTypes.bool.isRequired,
+  onHide: PropTypes.func.isRequired,
+  movie: PropTypes.object,
+};
+
 export default ModifyMovieModal;
+``

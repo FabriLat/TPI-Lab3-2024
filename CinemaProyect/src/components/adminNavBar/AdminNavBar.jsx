@@ -5,23 +5,22 @@ import { ThemeContext } from "../services/theme/theme.context";
 import { UserContext } from "../services/authentication/user.context";
 
 const AdminNavBar = () => {
-
-  const navItems = [{id: 1, text: "Cambiar tema"},
-    { id: 2, text: 'Sobre Nosotros', link: '/about' },
-    { id: 3, text: 'Cartelera', link: '/movies' },
-    { id: 4, text: 'Usuarios', link: '/userbase' },
-    {id: 5, text: 'Peliculas admin', link: '/adminmovies' },
-    ]
+  const navItems = [
+    { id: 1, text: "Cambiar tema" },
+    { id: 2, text: "Sobre Nosotros", link: "/about" },
+    { id: 3, text: "Cartelera", link: "/movies" },
+    { id: 4, text: "Usuarios", link: "/userbase" },
+    { id: 5, text: "Peliculas admin", link: "/adminmovies" },
+  ];
 
   const navigate = useNavigate();
-  const {toggleTheme} = useContext(ThemeContext);
-  const { setUser } = useContext(UserContext)
+  const { toggleTheme } = useContext(ThemeContext);
+  const { setUser } = useContext(UserContext);
 
   const logOutHandle = () => {
-    setUser(null)
-    navigate("/")
-  }
-
+    setUser(null);
+    navigate("/");
+  };
 
   return (
     <Row>
@@ -51,17 +50,22 @@ const AdminNavBar = () => {
                 <button
                   className="btn btn-dark"
                   style={{ whiteSpace: "nowrap" }}
-                  onClick={() => item.id===1 ? toggleTheme() : navigate(item.link)}>
+                  onClick={() =>
+                    item.id === 1 ? toggleTheme() : navigate(item.link)
+                  }
+                >
                   {item.text}
                 </button>
               </li>
             ))}
-             <li className="m-3" key={6}>
+            <li className="m-3" key={6}>
               <button
                 className="btn btn-dark"
                 style={{ whiteSpace: "nowrap" }}
                 onClick={logOutHandle}
-              >Cerrar sesión</button>
+              >
+                Cerrar sesión
+              </button>
             </li>
           </Col>
         </ul>

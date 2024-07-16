@@ -1,31 +1,33 @@
-import { Modal, Form, Button } from "react-bootstrap";
-import { useState } from "react";
+import { Modal, Button } from "react-bootstrap";
+import PropTypes from "prop-types";
 
-const DeleteMovieModal = () => {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
+const DeleteMovieModal = ({ show, onHide, movie }) => {
   return (
-    <>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Eliminar película</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group className="mb-3">
-              <Form.Label>¿Desea eliminar la película?</Form.Label>
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="success">Cancelar</Button>
-          <Button variant="danger">Eliminar</Button>
-        </Modal.Footer>
-      </Modal>
-    </>
+    <Modal show={show} onHide={onHide}>
+      <Modal.Header closeButton>
+        <Modal.Title style={{ color: "black" }}>Eliminar película</Modal.Title>
+      </Modal.Header>
+      <Modal.Body style={{ color: "black" }}>
+        {movie ? (
+          <p>¿Estás seguro de que deseas eliminar {movie.title}?</p>
+        ) : (
+          <p>Cargando...</p>
+        )}
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="danger" onClick={onHide}>
+          Cancelar
+        </Button>
+        <Button variant="success">Eliminar</Button>
+      </Modal.Footer>
+    </Modal>
   );
 };
+
+DeleteMovieModal.propTypes = {
+  show: PropTypes.bool.isRequired,
+  onHide: PropTypes.func.isRequired,
+  movie: PropTypes.object,
+};
+
 export default DeleteMovieModal;
