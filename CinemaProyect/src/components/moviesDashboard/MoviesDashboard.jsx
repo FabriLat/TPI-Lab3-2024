@@ -10,28 +10,20 @@ import ModalToBuy from "./modalToBuy/ModalToBuy";
 
 const MoviesDashboard = ({ movies }) => {
   const [modalShow, setModalShow] = useState(false);
+  const { user } = useContext(UserContext);
 
   const handleModalClose = () => setModalShow(false);
   const handleModalShow = () => setModalShow(true);
 
-<<<<<<< Updated upstream
-const MoviesDashboard = ({ movies }) => {
-  const { user } = useContext(UserContext);
-
   return (
     <>
       {user && user.type === "client" ? (
-      <ClientNavBar />
-    ) : user && user.type === "admin" ? (
-      <AdminNavBar />
-    ) : (
-      <NavBar />
-    )}
-=======
-  return (
-    <>
-      <NavBar />
->>>>>>> Stashed changes
+        <ClientNavBar />
+      ) : user && user.type === "admin" ? (
+        <AdminNavBar />
+      ) : (
+        <NavBar />
+      )}
       <Container className="d-flex justify-content-center align-items-center">
         <Row className="flex-wrap">
           <h1 className="align-items-center text-center m-4">Cartelera</h1>
@@ -67,9 +59,6 @@ const MoviesDashboard = ({ movies }) => {
                       >
                         Rating: {movie.rating} / 5
                       </Card.Text>
-<<<<<<< Updated upstream
-                      <Button variant="success">Comprar entrada</Button>
-=======
                       <Button variant="success" onClick={handleModalShow}>
                         Comprar entrada
                       </Button>
@@ -77,7 +66,6 @@ const MoviesDashboard = ({ movies }) => {
                         show={modalShow}
                         handleClose={handleModalClose}
                       />
->>>>>>> Stashed changes
                     </Card.Body>
                   </Card>
                 </Col>
