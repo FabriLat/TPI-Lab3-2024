@@ -11,44 +11,93 @@ import AdminMoviesDashboard from "./components/adminMoviesDashboard/AdminMoviesD
 import MovieDetails from "./components/movieDetails/MovieDetails";
 
 function App() {
-  const [movies, setMovies] = useState([]);
-
   const movieDetailHandle = (movie) => {
     setMovie(movie);
     console.log(`Seteado en app ${movie}`);
   };
 
-  // FETCHEO A MOVIES
+  //-------------------------FUNCIONES MOVIES--------------------------------
+  const [movies, setMovies] = useState([]);
+
+  const fetchMovies = async () => {
+    try {
+      const response = await fetch("http://localhost:8000/movies");
+      const data = await response.json();
+      setMovies(data);
+    } catch (error) {
+      console.log("Error al solicitar películas a la base de datos:", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const response = await fetch("http://localhost:8000/movies");
-        const movieData = await response.json();
-        setMovies(movieData);
-      } catch (error) {
-        console.log("Error al solicitar películas a la base de datos:", error);
-      }
-    };
     fetchMovies();
   }, []);
 
-  //--------------------------------------------------------------------------------------------------------------------------------------
-  // Funciones relacionadas con usuarios
+  // añadir pelicula
+  const addMovieHandler = async (newMovie) => {
+    try {
+      await fetch("http://localhost:8000/movies", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newMovie),
+      });
+      setMovies([newMovie, ...movies]);
+    } catch (error) {
+      console.log("Error al agregar película a la base de datos:", error);
+    }
+  };
+
+  // eliminar pelicula
+  const deleteMovieHandler = async (movieId) => {
+    try {
+      await fetch(`http://localhost:8000/movies/${movieId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      await fetchMovies(); // Actualizar la lista de películas después de eliminar una
+    } catch (error) {
+      console.log("Error al eliminar película de la base de datos:", error);
+    }
+  };
+
+  // modificar pelicula
+
+  const modifyMovieHandler = async (updatedMovie) => {
+    try {
+      await fetch(`http://localhost:8000/movies/${updatedMovie.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedMovie),
+      });
+      setMovies(
+        movies.map((movie) =>
+          movie.id === updatedMovie.id ? updatedMovie : movie
+        )
+      );
+    } catch (error) {
+      console.log("Error al modificar pelicula en la base de datos:", error);
+    }
+  };
+
+  //----------------------FUNCIONES USERS------------------------------
 
   const [users, setUsers] = useState([]);
 
-  // FETCHEO A USERS
   const fetchUsers = async () => {
-    console.log("en app")
-    // intenta fetchear
+    console.log("en app");
+
     try {
       const response = await fetch("http://localhost:8000/users");
       const usersData = await response.json();
       setUsers(usersData);
     } catch (error) {
-      // si no puede, muestra error
-      console.log("Error al solicitar películas a la base de datos:", error);
+      console.log("Error al solicitar usuarios a la base de datos:", error);
     }
   };
 
@@ -115,7 +164,6 @@ function App() {
       console.log("Error al modificar usuario en la base de datos:", error);
     }
   };
-  //--------------------------------------------------------------------------------------------------------------------------------------
 
   //--------------------------------------------------------------------------------------------------------------------------------------
 
@@ -130,16 +178,12 @@ function App() {
     { path: "/signin", element: <SignIn onRegister={addUserHandler} /> },
     {
       path: "/movies",
-      element: (
-        <MoviesDashboard movies={movies} />
-      ),
+      element: <MoviesDashboard movies={movies} />,
     },
 
     {
       path: "/movie/:id",
-      element: (
-        <MovieDetails />
-      ),
+      element: <MovieDetails />,
     },
     {
       path: "/userbase",
@@ -158,8 +202,12 @@ function App() {
       path: "/adminmovies",
       element: (
         <Protected>
-          {" "}
-          <AdminMoviesDashboard movies={movies} />{" "}
+          <AdminMoviesDashboard
+            movies={movies}
+            addMovieHandler={addMovieHandler}
+            deleteMovieHandler={deleteMovieHandler}
+            modifyMovieHandler={modifyMovieHandler}
+          />
         </Protected>
       ),
     },
@@ -172,5 +220,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

@@ -1,17 +1,17 @@
+// AdminMoviesDashboard.js
 import { useState } from "react";
 import { Card, Container, Button, Col, Row } from "react-bootstrap";
 import PropTypes from "prop-types";
 import AdminNavBar from "../adminNavBar/AdminNavBar";
-import ModifyMovieModal from "./modifyMovieModal/modifyMovieModal";
 import DeleteMovieModal from "./deleteMovieModal/DeleteMovieModal";
-import AddMovieModal from "./addMovieModal/AddMovieModal"; // Importa tu componente de agregar película
+import AddMovieModal from "./addMovieModal/AddMovieModal";
+import ModifyMovieModal from "./modifyMovieModal/ModifyMovieModal"; // Importa tu componente de modificar película
 
-const AdminMoviesDashboard = ({ movies }) => {
-  console.log("Renderizado movies admin")
+const AdminMoviesDashboard = ({ movies, addMovieHandler, deleteMovieHandler, modifyMovieHandler }) => {
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [showModifyModal, setShowModifyModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [showAddModal, setShowAddModal] = useState(false); // Estado para manejar la visibilidad del modal de agregar
+  const [showAddModal, setShowAddModal] = useState(false);
 
   const handleOpenModifyModal = (movie) => {
     setSelectedMovie(movie);
@@ -111,23 +111,32 @@ const AdminMoviesDashboard = ({ movies }) => {
         </Row>
       </Container>
 
-      <ModifyMovieModal
-        show={showModifyModal}
-        onHide={handleCloseModifyModal}
-        movie={selectedMovie}
-      />
       <DeleteMovieModal
         show={showDeleteModal}
         onHide={handleCloseDeleteModal}
+        deleteMovieHandler={deleteMovieHandler}
         movie={selectedMovie}
       />
-      <AddMovieModal show={showAddModal} onHide={handleCloseAddModal} />
+      <AddMovieModal
+        show={showAddModal}
+        onHide={handleCloseAddModal}
+        addMovieHandler={addMovieHandler}
+      />
+      <ModifyMovieModal
+        show={showModifyModal}
+        onHide={handleCloseModifyModal}
+        modifyMovieHandler={modifyMovieHandler}
+        movie={selectedMovie}
+      />
     </>
   );
 };
 
 AdminMoviesDashboard.propTypes = {
   movies: PropTypes.array.isRequired,
+  addMovieHandler: PropTypes.func.isRequired,
+  deleteMovieHandler: PropTypes.func.isRequired,
+  modifyMovieHandler: PropTypes.func.isRequired,
 };
 
 export default AdminMoviesDashboard;

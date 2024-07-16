@@ -1,11 +1,14 @@
+// AddMovieModal.js
 import { Modal, Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-const AddMovieModal = ({ show, onHide }) => {
+const AddMovieModal = ({ show, onHide, addMovieHandler }) => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [shows, setShows] = useState("");
+  const [rating, setRating] = useState("");
+  const [runTime, setRunTime] = useState("");
 
   const changeTitleHandler = (event) => {
     setTitle(event.target.value);
@@ -15,9 +18,42 @@ const AddMovieModal = ({ show, onHide }) => {
     setImage(event.target.value);
   };
 
+  const changeRunTimeHandler = (event) => {
+    setRunTime(event.target.value);
+  };
+
   const changeShowsHandler = (event) => {
     setShows(event.target.value);
   };
+
+  const changeRatingHandler = (event) => {
+    setRating(event.target.value);
+  };
+
+  const handleSubmit = () => {
+    const newMovie = {
+      id: 0,
+      title: title,
+      image: image,
+      rating: parseFloat(rating),
+      runTime: parseInt(runTime, 10),
+      shows: shows,
+    };
+
+    addMovieHandler(newMovie);
+    setTitle("");
+    setImage("");
+    setRunTime("");
+    setRating("");
+    setShows("");
+    onHide();
+    setTimeout(() => {
+      alert("Se registró la pelicula exitosamente!!");
+    }, 200);
+
+  };
+
+
 
   return (
     <Modal show={show} onHide={onHide}>
@@ -38,12 +74,32 @@ const AddMovieModal = ({ show, onHide }) => {
             />
           </Form.Group>
           <Form.Group className="mb-3">
+            <Form.Label style={{ color: "black" }}>Duración</Form.Label>
+            <Form.Control
+              type="text"
+              rows={3}
+              onChange={changeRunTimeHandler}
+              value={runTime}
+              style={{ color: "black" }}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3">
             <Form.Label style={{ color: "black" }}>Imagen</Form.Label>
             <Form.Control
               type="text"
               rows={3}
               onChange={changeImageHandler}
               value={image}
+              style={{ color: "black" }}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label style={{ color: "black" }}>Rating</Form.Label>
+            <Form.Control
+              type="number"
+              rows={3}
+              onChange={changeRatingHandler}
+              value={rating}
               style={{ color: "black" }}
             />
           </Form.Group>
@@ -63,7 +119,9 @@ const AddMovieModal = ({ show, onHide }) => {
         <Button variant="danger" onClick={onHide}>
           Cancelar
         </Button>
-        <Button variant="success">Agregar</Button>
+        <Button onClick={handleSubmit} variant="success">
+          Agregar
+        </Button>
       </Modal.Footer>
     </Modal>
   );
@@ -72,6 +130,7 @@ const AddMovieModal = ({ show, onHide }) => {
 AddMovieModal.propTypes = {
   show: PropTypes.bool.isRequired,
   onHide: PropTypes.func.isRequired,
+  addMovieHandler: PropTypes.func.isRequired,
 };
 
 export default AddMovieModal;
