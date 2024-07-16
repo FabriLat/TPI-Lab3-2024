@@ -8,6 +8,7 @@ import { UserContext } from "../services/authentication/user.context";
 
 
 const LogIn = ({ users }) => {
+  console.log("loginn")
   const { setUser } = useContext(UserContext);
 
   // estados para mostrar y dejar de mostrar el modal

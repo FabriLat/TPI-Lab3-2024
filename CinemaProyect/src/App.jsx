@@ -10,17 +10,13 @@ import UserBase from "./components/userBase/UserBase";
 import AdminMoviesDashboard from "./components/adminMoviesDashboard/AdminMoviesDashboard";
 import MovieDetails from "./components/movieDetails/MovieDetails";
 
-
 function App() {
   const [movies, setMovies] = useState([]);
-  const [movie, setMovie] = useState(null);
 
   const movieDetailHandle = (movie) => {
-    setMovie(movie)
-    console.log(`Seteado en app ${movie}`)
-
-  }
-
+    setMovie(movie);
+    console.log(`Seteado en app ${movie}`);
+  };
 
   // FETCHEO A MOVIES
 
@@ -44,6 +40,7 @@ function App() {
 
   // FETCHEO A USERS
   const fetchUsers = async () => {
+    console.log("en app")
     // intenta fetchear
     try {
       const response = await fetch("http://localhost:8000/users");
@@ -133,12 +130,16 @@ function App() {
     { path: "/signin", element: <SignIn onRegister={addUserHandler} /> },
     {
       path: "/movies",
-      element: <MoviesDashboard movies={movies} onSelectMovie={movieDetailHandle} />,
+      element: (
+        <MoviesDashboard movies={movies} />
+      ),
     },
 
     {
       path: "/movie/:id",
-      element: <MovieDetails movie={movie} />,
+      element: (
+        <MovieDetails />
+      ),
     },
     {
       path: "/userbase",

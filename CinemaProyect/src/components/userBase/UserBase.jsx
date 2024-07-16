@@ -9,6 +9,7 @@ import { useState } from "react";
 import AdminNavBar from "../adminNavBar/AdminNavBar";
 
 const UserBase = ({ listUsers, onDeletUserHandler, addUser, modifyUser }) => {
+  console.log("Renderizado userbaseee")
   const listMapped = listUsers.map((user) => (
     <User
       key={Math.random()}

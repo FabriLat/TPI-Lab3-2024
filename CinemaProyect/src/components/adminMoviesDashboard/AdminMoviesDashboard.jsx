@@ -7,6 +7,7 @@ import DeleteMovieModal from "./deleteMovieModal/DeleteMovieModal";
 import AddMovieModal from "./addMovieModal/AddMovieModal"; // Importa tu componente de agregar película
 
 const AdminMoviesDashboard = ({ movies }) => {
+  console.log("Renderizado movies admin")
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [showModifyModal, setShowModifyModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);

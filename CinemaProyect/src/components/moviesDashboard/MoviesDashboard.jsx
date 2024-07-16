@@ -9,7 +9,8 @@ import NavBar from "../navBar/NavBar";
 import ModalToBuy from "./modalToBuy/ModalToBuy";
 import {  useNavigate } from "react-router-dom";
 
-const MoviesDashboard = ({ movies, onSelectMovie }) => {
+const MoviesDashboard = ({ movies }) => {
+  console.log("renderizado /movies")
   const navigate = useNavigate()
   const [modalShow, setModalShow] = useState(false);
   const { user } = useContext(UserContext);
@@ -21,7 +22,6 @@ const MoviesDashboard = ({ movies, onSelectMovie }) => {
 
 
   const getMovieHandle = (movie) => {
-    onSelectMovie(movie)
     navigate(`/movie/${movie.id}`)
   };
 
