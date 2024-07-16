@@ -2,6 +2,7 @@ import { Card, Container, Button, Col, Row } from "react-bootstrap";
 import PropTypes from "prop-types";
 import AdminNavBar from "../adminNavBar/AdminNavBar";
 
+
 const AdminMoviesDashboard = ({ movies}) => {
   return (
     <>
