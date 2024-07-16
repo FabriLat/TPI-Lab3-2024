@@ -7,13 +7,23 @@ import { UserContext } from "../services/authentication/user.context";
 import AdminNavBar from "../adminNavBar/AdminNavBar";
 import NavBar from "../navBar/NavBar";
 import ModalToBuy from "./modalToBuy/ModalToBuy";
+import {  useNavigate } from "react-router-dom";
 
-const MoviesDashboard = ({ movies }) => {
+const MoviesDashboard = ({ movies, onSelectMovie }) => {
+  const navigate = useNavigate()
   const [modalShow, setModalShow] = useState(false);
   const { user } = useContext(UserContext);
 
   const handleModalClose = () => setModalShow(false);
   const handleModalShow = () => setModalShow(true);
+
+
+
+
+  const getMovieHandle = (movie) => {
+    onSelectMovie(movie)
+    navigate(`/movie/${movie.id}`)
+  };
 
   return (
     <>
@@ -59,7 +69,7 @@ const MoviesDashboard = ({ movies }) => {
                       >
                         Rating: {movie.rating} / 5
                       </Card.Text>
-                      <Button variant="success" onClick={handleModalShow}>
+                      <Button variant="success" onClick={() => getMovieHandle(movie)}>
                         Comprar entrada
                       </Button>
                       <ModalToBuy

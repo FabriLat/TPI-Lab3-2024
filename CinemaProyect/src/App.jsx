@@ -8,9 +8,19 @@ import Protected from "./routes/Protected";
 import NotFound from "./routes/NotFound";
 import UserBase from "./components/userBase/UserBase";
 import AdminMoviesDashboard from "./components/adminMoviesDashboard/AdminMoviesDashboard";
+import MovieDetails from "./components/movieDetails/MovieDetails";
+
 
 function App() {
   const [movies, setMovies] = useState([]);
+  const [movie, setMovie] = useState(null);
+
+  const movieDetailHandle = (movie) => {
+    setMovie(movie)
+    console.log(`Seteado en app ${movie}`)
+
+  }
+
 
   // FETCHEO A MOVIES
 
@@ -123,8 +133,12 @@ function App() {
     { path: "/signin", element: <SignIn onRegister={addUserHandler} /> },
     {
       path: "/movies",
-      // ruta protegida, solo si te logueaste podes acceder. XD
-      element: <MoviesDashboard movies={movies} />,
+      element: <MoviesDashboard movies={movies} onSelectMovie={movieDetailHandle} />,
+    },
+
+    {
+      path: "/movie/:id",
+      element: <MovieDetails movie={movie} />,
     },
     {
       path: "/userbase",
