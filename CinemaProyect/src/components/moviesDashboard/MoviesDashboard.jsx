@@ -1,11 +1,20 @@
 import { Card, Container, Button, Col, Row } from "react-bootstrap";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import ClientNavBar from "../clientNavBar/ClientNavBar";
 import { useContext } from "react";
 import { UserContext } from "../services/authentication/user.context";
 import AdminNavBar from "../adminNavBar/AdminNavBar";
 import NavBar from "../navBar/NavBar";
+import ModalToBuy from "./modalToBuy/ModalToBuy";
 
+const MoviesDashboard = ({ movies }) => {
+  const [modalShow, setModalShow] = useState(false);
+
+  const handleModalClose = () => setModalShow(false);
+  const handleModalShow = () => setModalShow(true);
+
+<<<<<<< Updated upstream
 const MoviesDashboard = ({ movies }) => {
   const { user } = useContext(UserContext);
 
@@ -18,6 +27,11 @@ const MoviesDashboard = ({ movies }) => {
     ) : (
       <NavBar />
     )}
+=======
+  return (
+    <>
+      <NavBar />
+>>>>>>> Stashed changes
       <Container className="d-flex justify-content-center align-items-center">
         <Row className="flex-wrap">
           <h1 className="align-items-center text-center m-4">Cartelera</h1>
@@ -53,7 +67,17 @@ const MoviesDashboard = ({ movies }) => {
                       >
                         Rating: {movie.rating} / 5
                       </Card.Text>
+<<<<<<< Updated upstream
                       <Button variant="success">Comprar entrada</Button>
+=======
+                      <Button variant="success" onClick={handleModalShow}>
+                        Comprar entrada
+                      </Button>
+                      <ModalToBuy
+                        show={modalShow}
+                        handleClose={handleModalClose}
+                      />
+>>>>>>> Stashed changes
                     </Card.Body>
                   </Card>
                 </Col>
