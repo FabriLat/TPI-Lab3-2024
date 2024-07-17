@@ -27,7 +27,7 @@ const MovieDetails = () => {
           <p>Rating: {rating} / 5</p>
           <p>Duracion: {runTime}</p>
         </Col>
-        <Col style={{ marginLeft: "200px" }}>
+        <Col style={{ marginLeft: "200px", marginTop: "250px" }}>
           <p
             style={{ width: "700px", textAlign: "justify", marginTop: "50px" }}
           >

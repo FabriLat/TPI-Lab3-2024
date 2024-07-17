@@ -1,23 +1,18 @@
 import { Card, Container, Button, Col, Row } from "react-bootstrap";
-import { useState } from "react";
 import PropTypes from "prop-types";
 import ClientNavBar from "../clientNavBar/ClientNavBar";
 import { useContext } from "react";
 import { UserContext } from "../services/authentication/user.context";
 import AdminNavBar from "../adminNavBar/AdminNavBar";
 import NavBar from "../navBar/NavBar";
-import ModalToBuy from "./modalToBuy/ModalToBuy";
 import { useNavigate } from "react-router-dom";
-
 
 const MoviesDashboard = ({ movies }) => {
   console.log("renderizado /movies");
   const navigate = useNavigate();
-  const [modalShow, setModalShow] = useState(false);
   const { user } = useContext(UserContext);
 
-  const handleModalClose = () => setModalShow(false);
-  const handleModalShow = () => setModalShow(true);
+
 
   const getMovieHandle = (movie) => {
     let id = movie.id;
@@ -25,8 +20,8 @@ const MoviesDashboard = ({ movies }) => {
     let image = movie.image;
     let rating = movie.rating;
     let runTime = movie.runTime;
-    console.log(id,title,rating,runTime)
-    navigate(`/movie/${id}`,{
+    console.log(id, title, rating, runTime);
+    navigate(`/movie/${id}`, {
       state: {
         movie: {
           title,
@@ -60,26 +55,21 @@ const MoviesDashboard = ({ movies }) => {
                   lg={3}
                   className="mb-4"
                 >
-                  <Card key={movie.id}>
+                  <Card key={movie.id} style={{ backgroundColor: "black" }}>
                     <Card.Img
-                      style={{ height: "350px", objectFit: "cover" }}
+                      style={{ height: "500px", objectFit: "cover" }}
                       variant="top"
                       src={movie.image}
+                      alt={movie.title} // Añade un atributo alt para accesibilidad
                     />
                     <Card.Body style={{ backgroundColor: "black" }}>
-                      <Card.Title
-                        style={{ color: "white", backgroundColor: "black" }}
-                      >
+                      <Card.Title style={{ color: "white" }}>
                         {movie.title}
                       </Card.Title>
-                      <Card.Text
-                        style={{ backgroundColor: "black", color: "white" }}
-                      >
+                      <Card.Text style={{ color: "white" }}>
                         Duración: {movie.runTime} min
                       </Card.Text>
-                      <Card.Text
-                        style={{ backgroundColor: "black", color: "white" }}
-                      >
+                      <Card.Text style={{ color: "white" }}>
                         Rating: {movie.rating} / 5
                       </Card.Text>
                       <Button
@@ -88,10 +78,6 @@ const MoviesDashboard = ({ movies }) => {
                       >
                         Comprar entrada
                       </Button>
-                      <ModalToBuy
-                        show={modalShow}
-                        handleClose={handleModalClose}
-                      />
                     </Card.Body>
                   </Card>
                 </Col>

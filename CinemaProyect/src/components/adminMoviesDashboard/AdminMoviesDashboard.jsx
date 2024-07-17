@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import AdminNavBar from "../adminNavBar/AdminNavBar";
 import DeleteMovieModal from "./deleteMovieModal/DeleteMovieModal";
 import AddMovieModal from "./addMovieModal/AddMovieModal";
-import ModifyMovieModal from "./modifyMovieModal/ModifyMovieModal";
+import ModifyMovieModal from "./modifyMovieModal/modifyMovieModal"
 
 const AdminMoviesDashboard = ({
   movies,
@@ -68,7 +68,7 @@ const AdminMoviesDashboard = ({
                   lg={3}
                   className="mb-4"
                 >
-                  <Card key={movie.id}>
+                  <Card key={movie.id} style={{backgroundColor: "black"}}>
                     <Card.Img
                       style={{ height: "350px", objectFit: "cover" }}
                       variant="top"
