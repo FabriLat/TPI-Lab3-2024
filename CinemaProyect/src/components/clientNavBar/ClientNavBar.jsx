@@ -39,7 +39,7 @@ const ClientNavBar = () => {
             <li className="m-2">
               <a
                 style={{ fontFamily: "Poppins", color: "white" }}
-                className="nav-link link-dark"
+                className="nav-link "
                 href="/"
               >
                 DRAGON CINEMA

@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 const MoviesDashboard = ({ movies }) => {
   console.log("renderizado /movies");
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const { user } = useContext(UserContext);
 
 
@@ -20,7 +20,9 @@ const MoviesDashboard = ({ movies }) => {
     let image = movie.image;
     let rating = movie.rating;
     let runTime = movie.runTime;
-    console.log(id, title, rating, runTime);
+    let description = movie.description;
+    console.log(movie.description)
+
     navigate(`/movie/${id}`, {
       state: {
         movie: {
@@ -28,6 +30,7 @@ const MoviesDashboard = ({ movies }) => {
           image,
           rating,
           runTime,
+          description,
         },
       },
     });

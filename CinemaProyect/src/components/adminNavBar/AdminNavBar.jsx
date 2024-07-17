@@ -37,8 +37,8 @@ const AdminNavBar = () => {
                 />
               </a>
             </li>
-            <li className="m-2">
-              <a className="nav-link link-dark" href="/">
+            <li className="m-2" >
+              <a className="nav-link " href="/" style={{ fontFamily: "Poppins",color:"white" }}>
                 DRAGON CINEMA
               </a>
             </li>

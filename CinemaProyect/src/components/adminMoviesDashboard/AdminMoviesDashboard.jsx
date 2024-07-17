@@ -70,7 +70,7 @@ const AdminMoviesDashboard = ({
                 >
                   <Card key={movie.id} style={{backgroundColor: "black"}}>
                     <Card.Img
-                      style={{ height: "350px", objectFit: "cover" }}
+                      style={{ height: "500px", objectFit: "cover" }}
                       variant="top"
                       src={movie.image}
                     />

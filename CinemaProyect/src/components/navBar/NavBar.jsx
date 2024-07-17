@@ -32,9 +32,9 @@ const NavBar = () => {
             </li>
             <li className="m-2">
               <a
-                style={{ fontFamily: "Poppins", color: "white" }}
-                className="nav-link link-dark"
+                className="nav-link "
                 href="/"
+                style={{ fontFamily: "Poppins", color: "white" }}
               >
                 DRAGON CINEMA
               </a>

@@ -94,7 +94,7 @@ const ModalToAddUser = ({ show, handleClose, addUser }) => {
             >
               <Form.Label style={{ color: "black" }}>Contraseña</Form.Label>
               <Form.Control
-                type="text"
+                type="password"
                 rows={3}
                 required
                 value={password}
