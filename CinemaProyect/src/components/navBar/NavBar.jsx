@@ -4,15 +4,16 @@ import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "../services/theme/theme.context";
 
 const NavBar = () => {
-
-  const navItems = [{id: 1, text: "Cambiar tema"},
-    { id: 2, text: 'Sobre Nosotros', link: '/about' },
-    { id: 3, text: 'Cartelera', link: '/movies' },
-    { id: 4, text: 'Iniciar sesión', link: '/login' },
-    { id: 5, text: "Registrarse", link: '/signin'}]
+  const navItems = [
+    { id: 1, text: "Cambiar tema" },
+    { id: 2, text: "Sobre Nosotros", link: "/about" },
+    { id: 3, text: "Cartelera", link: "/movies" },
+    { id: 4, text: "Iniciar sesión", link: "/login" },
+    { id: 5, text: "Registrarse", link: "/signin" },
+  ];
 
   const navigate = useNavigate();
-  const {toggleTheme} = useContext(ThemeContext);
+  const { toggleTheme } = useContext(ThemeContext);
 
   return (
     <Row>
@@ -29,8 +30,12 @@ const NavBar = () => {
                 />
               </a>
             </li>
-            <li className="m-2" >
-              <a style={{"fontFamily": "Poppins","color":"white"}} className="nav-link link-dark" href="/">
+            <li className="m-2">
+              <a
+                style={{ fontFamily: "Poppins", color: "white" }}
+                className="nav-link link-dark"
+                href="/"
+              >
                 DRAGON CINEMA
               </a>
             </li>
@@ -42,7 +47,10 @@ const NavBar = () => {
                 <button
                   className="btn btn-dark"
                   style={{ whiteSpace: "nowrap" }}
-                  onClick={() => item.id===1 ? toggleTheme() : navigate(item.link)}>
+                  onClick={() =>
+                    item.id === 1 ? toggleTheme() : navigate(item.link)
+                  }
+                >
                   {item.text}
                 </button>
               </li>
