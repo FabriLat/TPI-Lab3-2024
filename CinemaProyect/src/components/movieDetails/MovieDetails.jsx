@@ -2,10 +2,10 @@ import { Container, Button, Row, Col } from "react-bootstrap";
 import ModalToBuy from "../moviesDashboard/modalToBuy/ModalToBuy";
 import { useContext, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { UserContext } from "../../services/authentication/user.context";
 import ClientNavBar from "../clientNavBar/ClientNavBar";
 import AdminNavBar from "../adminNavBar/AdminNavBar";
 import NavBar from "../navBar/NavBar";
+import { UserContext } from "../../services/authentication/user.context";
 
 const MovieDetails = () => {
   const location = useLocation();
@@ -18,8 +18,6 @@ const MovieDetails = () => {
 
   const { user } = useContext(UserContext);
 
-  console.log("hola" + title, rating);
-
   return (
     <>
       {user && user.type === "client" ? (
@@ -29,25 +27,23 @@ const MovieDetails = () => {
       ) : (
         <NavBar />
       )}
-      <Container fluid style={{ marginLeft: "100px", width: "80%" }}>
+      <Container fluid style={{ maxWidth: "80%", marginTop: "20px" }}>
         <Row>
-          <Col md={4}>
+          <Col md={4} className="text-center mb-3">
             <img
               src={image}
-              style={{ width: "500px", height: "700px", marginTop: "50px" }}
+              style={{ maxWidth: "100%", height: "auto" }}
               alt={title}
             />
-            <h1>{title}</h1>
+            <h1 className="mt-3">{title}</h1>
             <p>Rating: {rating} / 5</p>
-            <p>Duracion: {runTime} mins</p>
+            <p>Duración: {runTime} mins</p>
           </Col>
-          <Col style={{ marginLeft: "200px", marginTop: "250px" }}>
+          <Col md={8} className="mt-5"> {/* Añadido un margen top adicional */}
             <p
               style={{
                 fontSize: "20px",
-                width: "700px",
                 textAlign: "justify",
-                marginTop: "10px",
               }}
             >
               {description}
@@ -55,16 +51,15 @@ const MovieDetails = () => {
             <Button
               variant="success"
               onClick={handleModalShow}
-              className="d-flex justify-content-end"
-              style={{ marginLeft: "530px", marginTop: "100px" }}
+              className="float-end mt-3"
             >
               Comprar entrada
             </Button>
-
-            <ModalToBuy show={modalShow} handleClose={handleModalClose} />
           </Col>
         </Row>
       </Container>
+
+      <ModalToBuy show={modalShow} handleClose={handleModalClose} />
     </>
   );
 };
