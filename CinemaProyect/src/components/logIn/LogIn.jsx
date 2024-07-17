@@ -4,10 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { useRef, useState, useContext } from "react";
 import { Modal } from "react-bootstrap";
 import { UserContext } from "../../services/authentication/user.context";
+import useWindowSize from "../../custom/useWindowSize";
 
 const LogIn = ({ users }) => {
   console.log("Renderizando LogIn");
   const { setUser } = useContext(UserContext);
+  const { width, height } = useWindowSize();
 
   // estados para mostrar y dejar de mostrar el modal
   const [show, setShow] = useState(false);
@@ -91,6 +93,8 @@ const LogIn = ({ users }) => {
             >
               Iniciar sesión
             </Button>
+            <p style={{marginTop: "40px"}}>Alto de pantalla: {height}px 🖥️</p>
+            <p style={{marginTop: "40px"}}>Ancho de pantalla: {width}px 🖥️</p>
           </Col>
         </Form.Group>
       </Form>
