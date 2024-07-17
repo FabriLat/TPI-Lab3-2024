@@ -11,10 +11,7 @@ import AdminMoviesDashboard from "./components/adminMoviesDashboard/AdminMoviesD
 import MovieDetails from "./components/movieDetails/MovieDetails";
 
 function App() {
-  const movieDetailHandle = (movie) => {
-    setMovie(movie);
-    console.log(`Seteado en app ${movie}`);
-  };
+
 
   //-------------------------FUNCIONES MOVIES--------------------------------
   const [movies, setMovies] = useState([]);

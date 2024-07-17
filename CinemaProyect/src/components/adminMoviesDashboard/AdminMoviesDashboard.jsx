@@ -1,13 +1,17 @@
-// AdminMoviesDashboard.js
 import { useState } from "react";
 import { Card, Container, Button, Col, Row } from "react-bootstrap";
 import PropTypes from "prop-types";
 import AdminNavBar from "../adminNavBar/AdminNavBar";
 import DeleteMovieModal from "./deleteMovieModal/DeleteMovieModal";
 import AddMovieModal from "./addMovieModal/AddMovieModal";
-import ModifyMovieModal from "./modifyMovieModal/ModifyMovieModal"; // Importa tu componente de modificar película
+import ModifyMovieModal from "./modifyMovieModal/modifyMovieModal";
 
-const AdminMoviesDashboard = ({ movies, addMovieHandler, deleteMovieHandler, modifyMovieHandler }) => {
+const AdminMoviesDashboard = ({
+  movies,
+  addMovieHandler,
+  deleteMovieHandler,
+  modifyMovieHandler,
+}) => {
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [showModifyModal, setShowModifyModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);

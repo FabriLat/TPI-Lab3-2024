@@ -8,6 +8,7 @@ import NavBar from "../navBar/NavBar";
 const Dashboard = () => {
   console.log("renderizado dashboard")
   const { user } = useContext(UserContext);
+  
 
   return (
     <div className="">

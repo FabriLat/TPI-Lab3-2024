@@ -7,22 +7,35 @@ import { UserContext } from "../services/authentication/user.context";
 import AdminNavBar from "../adminNavBar/AdminNavBar";
 import NavBar from "../navBar/NavBar";
 import ModalToBuy from "./modalToBuy/ModalToBuy";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 const MoviesDashboard = ({ movies }) => {
-  console.log("renderizado /movies")
-  const navigate = useNavigate()
+  console.log("renderizado /movies");
+  const navigate = useNavigate();
   const [modalShow, setModalShow] = useState(false);
   const { user } = useContext(UserContext);
 
   const handleModalClose = () => setModalShow(false);
   const handleModalShow = () => setModalShow(true);
 
-
-
-
   const getMovieHandle = (movie) => {
-    navigate(`/movie/${movie.id}`)
+    let id = movie.id;
+    let title = movie.title;
+    let image = movie.image;
+    let rating = movie.rating;
+    let runTime = movie.runTime;
+    console.log(id,title,rating,runTime)
+    navigate(`/movie/${id}`,{
+      state: {
+        movie: {
+          title,
+          image,
+          rating,
+          runTime,
+        },
+      },
+    });
   };
 
   return (
@@ -69,7 +82,10 @@ const MoviesDashboard = ({ movies }) => {
                       >
                         Rating: {movie.rating} / 5
                       </Card.Text>
-                      <Button variant="success" onClick={() => getMovieHandle(movie)}>
+                      <Button
+                        variant="success"
+                        onClick={() => getMovieHandle(movie)}
+                      >
                         Comprar entrada
                       </Button>
                       <ModalToBuy

@@ -1,23 +1,31 @@
 import { Container, Button, Row, Col } from "react-bootstrap";
 import ModalToBuy from "../moviesDashboard/modalToBuy/ModalToBuy";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const MovieDetails = () => {
+  const location = useLocation();
   const [modalShow, setModalShow] = useState(false);
+  const { title, image, rating, runTime } = location.state && location.state.movie ? location.state.movie : {};
 
   const handleModalClose = () => setModalShow(false);
   const handleModalShow = () => setModalShow(true);
 
-  console.log("hola");
+  console.log("hola" + title,rating);
+
 
   return (
     <Container fluid style={{ marginLeft: "100px", width: "80%" }}>
       <Row>
-        <Col md={4}>
-          {"imagen"}
-          <h1>TITULO</h1>
-          <p>Rating: --- / 5</p>
-          <p>DESCRIPCION DE LA PELICULA</p>
+      <Col md={4}>
+          <img
+            src={image}
+            style={{ width: "500px", height: "700px", marginTop: "50px" }}
+            alt={title}
+          />
+          <h1>{title}</h1>
+          <p>Rating: {rating} / 5</p>
+          <p>Duracion: {runTime}</p>
         </Col>
         <Col style={{ marginLeft: "200px" }}>
           <p
