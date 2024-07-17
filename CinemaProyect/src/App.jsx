@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Dashboard from "./components/dashboard/Dashboard";
 import SignIn from "./components/signIn/SignIn";
 import LogIn from "./components/logIn/LogIn";
@@ -28,41 +28,46 @@ function App() {
     fetchMovies();
   }, []);
 
-  // añadir pelicula
-  const addMovieHandler = async (newMovie) => {
-    try {
-      await fetch("http://localhost:8000/movies", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newMovie),
-      });
-      setMovies([newMovie, ...movies]);
-    } catch (error) {
-      console.log("Error al agregar película a la base de datos:", error);
-    }
-  };
+  // añadir pelicula. uso de useCallback
+  const addMovieHandler = useCallback(
+    async (newMovie) => {
+      try {
+        console.log("Ejecutando callback addMovie");
+        await fetch("http://localhost:8000/movies", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newMovie),
+        });
+        setMovies([newMovie, ...movies]);
+      } catch (error) {
+        console.log("Error al agregar película a la base de datos:", error);
+      }
+    },
+    [movies]
+  );
 
-  // eliminar pelicula
-  const deleteMovieHandler = async (movieId) => {
+  // eliminar pelicula. uso de useCallback
+  const deleteMovieHandler = useCallback(async (movieId) => {
     try {
+      console.log("Ejecutando callback deleteMovie");
       await fetch(`http://localhost:8000/movies/${movieId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
       });
-      await fetchMovies(); // Actualizar la lista de películas después de eliminar una
+      await fetchMovies();
     } catch (error) {
       console.log("Error al eliminar película de la base de datos:", error);
     }
-  };
+  }, []);
 
-  // modificar pelicula
-
-  const modifyMovieHandler = async (updatedMovie) => {
+  // modificar pelicula. uso de UseCallback
+  const modifyMovieHandler = useCallback(async (updatedMovie) => {
     try {
+      console.log("Ejecutando callback modifyMovie");
       await fetch(`http://localhost:8000/movies/${updatedMovie.id}`, {
         method: "PUT",
         headers: {
@@ -70,15 +75,15 @@ function App() {
         },
         body: JSON.stringify(updatedMovie),
       });
-      setMovies(
-        movies.map((movie) =>
+      setMovies((prevMovies) =>
+        prevMovies.map((movie) =>
           movie.id === updatedMovie.id ? updatedMovie : movie
         )
       );
     } catch (error) {
-      console.log("Error al modificar pelicula en la base de datos:", error);
+      console.log("Error al modificar película en la base de datos:", error);
     }
-  };
+  }, []);
 
   //----------------------FUNCIONES USERS------------------------------
 
