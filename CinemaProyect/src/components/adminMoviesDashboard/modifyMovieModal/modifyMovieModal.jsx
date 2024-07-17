@@ -129,7 +129,7 @@ const ModifyMovieModal = ({ show, onHide, modifyMovieHandler, movie }) => {
 };
 
 ModifyMovieModal.propTypes = {
-  show: PropTypes.bool.is,
+  show: PropTypes.bool,
 };
 
 export default ModifyMovieModal;

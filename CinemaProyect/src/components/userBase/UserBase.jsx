@@ -9,7 +9,7 @@ import { useState } from "react";
 import AdminNavBar from "../adminNavBar/AdminNavBar";
 
 const UserBase = ({ listUsers, onDeletUserHandler, addUser, modifyUser }) => {
-  console.log("Renderizado userbaseee")
+  console.log("Renderizando en UserBase");
   const listMapped = listUsers.map((user) => (
     <User
       key={Math.random()}
@@ -29,7 +29,7 @@ const UserBase = ({ listUsers, onDeletUserHandler, addUser, modifyUser }) => {
 
   return (
     <>
-    <AdminNavBar/>
+      <AdminNavBar />
       <h1 className="text-center mt-5" style={{ marginBottom: "170px" }}>
         Base de Datos de Usuarios
       </h1>

@@ -8,7 +8,7 @@ export const ThemeContextProvider = ({ children }) => {
 
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
-    console.log("Tema actualizado a: ", newTheme);
+    console.log("Tema actualizado a ", newTheme);
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
   };

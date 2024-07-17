@@ -5,10 +5,8 @@ import { useRef, useState, useContext } from "react";
 import { Modal } from "react-bootstrap";
 import { UserContext } from "../services/authentication/user.context";
 
-
-
 const LogIn = ({ users }) => {
-  console.log("loginn")
+  console.log("Renderizando LogIn");
   const { setUser } = useContext(UserContext);
 
   // estados para mostrar y dejar de mostrar el modal
@@ -16,12 +14,10 @@ const LogIn = ({ users }) => {
   const onClose = () => setShow(false);
 
   const navigate = useNavigate();
-  // const [alert, setAlert] = useState(false);
-  // ALERTA OPCIONAL PARA AVISARLE AL USUARIO Q SE LOGUEO. LA SAQUE PORQUE NO SE RENDERIZABA MOVIES
 
   // useRef para acceder al dom
-  const userRef = useRef(null);
-  const passRef = useRef(null);
+  const userRef = useRef("");
+  const passRef = useRef("");
 
   const logInHandler = (event) => {
     event.preventDefault();
@@ -37,44 +33,33 @@ const LogIn = ({ users }) => {
       passRef.current.focus();
       return;
     } else {
-      // MODAL PARA CUANDO EL USUARIO QUIERE LOGUEARSE ANTES DE REGISTRARSE PREVIAMENTE
-      // setShow(true); (modal codificado mas abajo)
-
-      // falta agregar logica para comparar y validar datos ingresados en el registro (SignIn)
-      //setIsLoggedIn(true);
-
-      // si son correctos (logueo true), redirecciona a cartelera. falta logica
-      // if (loggedIn) {
-      //   navigate("/movies", { replace: true });
-      // }
-      
-      let userToAdd = {}
+      let userToAdd = {};
       let loggedUser = users.filter(
         (u) =>
-          (u.userName === user || u.email === user) &&
-          u.password === password
+          (u.userName === user || u.email === user) && u.password === password
       );
-      
-      if (loggedUser.length > 0){ userToAdd = {id: loggedUser[0].id,
-        userName: loggedUser[0].userName,
-        email: loggedUser[0].email,
-        showsBuyed: loggedUser[0].showsBuyed,
-        type: loggedUser[0].type,
-      }}
-     
-      console.log(userToAdd)
+
+      if (loggedUser.length > 0) {
+        userToAdd = {
+          id: loggedUser[0].id,
+          userName: loggedUser[0].userName,
+          email: loggedUser[0].email,
+          showsBuyed: loggedUser[0].showsBuyed,
+          type: loggedUser[0].type,
+        };
+      }
+
+      console.log(userToAdd);
       if (loggedUser.length > 0) {
         setUser(userToAdd);
-        loggedUser = []
-        console.log(loggedUser, loggedUser.length)
+        loggedUser = [];
+        console.log(loggedUser, loggedUser.length);
         navigate("/movies", { replace: true });
-      } else {  
-        alert("Usuario o contraseña incorrectos. Intente nuevamente.")
+      } else {
+        alert("Usuario o contraseña incorrectos. Intente nuevamente.");
         return;
       }
     }
-    // x el momento queda una redireccion automatica hacia cartelera para pruebas.
-    // alerta no utilizada setAlert(true);
   };
 
   return (
@@ -108,11 +93,6 @@ const LogIn = ({ users }) => {
             </Button>
           </Col>
         </Form.Group>
-        {/* <Row className="d-flex justify-content-center text-center">
-          <Col sm="6" md="4" lg="3">
-            {alert && <Alert variant="success">Logueado correctamente!</Alert>}
-          </Col>
-        </Row> */}
       </Form>
 
       <Modal show={show}>
@@ -138,7 +118,5 @@ const LogIn = ({ users }) => {
 export default LogIn;
 
 LogIn.propTypes = {
-  onLogin: PropTypes.func.isRequired,
-  //setIsLoggedIn: PropTypes.func.isRequired,
-  //loggedIn: PropTypes.bool,
+  onLogin: PropTypes.func,
 };

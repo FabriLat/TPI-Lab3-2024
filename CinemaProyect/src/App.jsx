@@ -11,8 +11,6 @@ import AdminMoviesDashboard from "./components/adminMoviesDashboard/AdminMoviesD
 import MovieDetails from "./components/movieDetails/MovieDetails";
 
 function App() {
-
-
   //-------------------------FUNCIONES MOVIES--------------------------------
   const [movies, setMovies] = useState([]);
 
@@ -87,7 +85,7 @@ function App() {
   const [users, setUsers] = useState([]);
 
   const fetchUsers = async () => {
-    console.log("en app");
+    console.log("Renderizando en App");
 
     try {
       const response = await fetch("http://localhost:8000/users");
