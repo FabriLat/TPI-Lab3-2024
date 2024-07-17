@@ -2,7 +2,7 @@ import { Container, Button, Row, Col } from "react-bootstrap";
 import ModalToBuy from "../moviesDashboard/modalToBuy/ModalToBuy";
 import { useContext, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { UserContext } from "../services/authentication/user.context";
+import { UserContext } from "../../services/authentication/user.context";
 import ClientNavBar from "../clientNavBar/ClientNavBar";
 import AdminNavBar from "../adminNavBar/AdminNavBar";
 import NavBar from "../navBar/NavBar";
@@ -16,7 +16,7 @@ const MovieDetails = () => {
   const handleModalClose = () => setModalShow(false);
   const handleModalShow = () => setModalShow(true);
 
-  const {user} = useContext(UserContext)
+  const { user } = useContext(UserContext);
 
   console.log("hola" + title, rating);
 
@@ -44,7 +44,7 @@ const MovieDetails = () => {
           <Col style={{ marginLeft: "200px", marginTop: "250px" }}>
             <p
               style={{
-                fontSize:"20px",
+                fontSize: "20px",
                 width: "700px",
                 textAlign: "justify",
                 marginTop: "10px",

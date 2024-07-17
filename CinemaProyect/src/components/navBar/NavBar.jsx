@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { ThemeContext } from "../services/theme/theme.context";
+import { ThemeContext } from "../../services/theme/theme.context";
 
 const NavBar = () => {
   const navItems = [

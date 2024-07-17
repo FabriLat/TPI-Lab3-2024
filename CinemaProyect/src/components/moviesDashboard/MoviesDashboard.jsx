@@ -2,17 +2,15 @@ import { Card, Container, Button, Col, Row } from "react-bootstrap";
 import PropTypes from "prop-types";
 import ClientNavBar from "../clientNavBar/ClientNavBar";
 import { useContext } from "react";
-import { UserContext } from "../services/authentication/user.context";
+import { UserContext } from "../../services/authentication/user.context";
 import AdminNavBar from "../adminNavBar/AdminNavBar";
 import NavBar from "../navBar/NavBar";
 import { useNavigate } from "react-router-dom";
 
 const MoviesDashboard = ({ movies }) => {
   console.log("renderizado /movies");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { user } = useContext(UserContext);
-
-
 
   const getMovieHandle = (movie) => {
     let id = movie.id;
@@ -21,7 +19,7 @@ const MoviesDashboard = ({ movies }) => {
     let rating = movie.rating;
     let runTime = movie.runTime;
     let description = movie.description;
-    console.log(movie.description)
+    console.log(movie.description);
 
     navigate(`/movie/${id}`, {
       state: {

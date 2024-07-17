@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { ThemeContext } from "../services/theme/theme.context";
-import { UserContext } from "../services/authentication/user.context";
+import { ThemeContext } from "../../services/theme/theme.context";
+import { UserContext } from "../../services/authentication/user.context";
 
 const AdminNavBar = () => {
   const navItems = [
@@ -37,8 +37,12 @@ const AdminNavBar = () => {
                 />
               </a>
             </li>
-            <li className="m-2" >
-              <a className="nav-link " href="/" style={{ fontFamily: "Poppins",color:"white" }}>
+            <li className="m-2">
+              <a
+                className="nav-link "
+                href="/"
+                style={{ fontFamily: "Poppins", color: "white" }}
+              >
                 DRAGON CINEMA
               </a>
             </li>

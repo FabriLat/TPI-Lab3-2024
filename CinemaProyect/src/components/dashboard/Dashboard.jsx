@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Carousel, Container } from "react-bootstrap";
-import { UserContext } from "../services/authentication/user.context";
+import { UserContext } from "../../services/authentication/user.context";
 import AdminNavBar from "../adminNavBar/AdminNavBar";
 import ClientNavBar from "../clientNavBar/ClientNavBar";
 import NavBar from "../navBar/NavBar";

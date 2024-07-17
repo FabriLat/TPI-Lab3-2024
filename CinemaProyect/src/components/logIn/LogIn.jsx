@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { useRef, useState, useContext } from "react";
 import { Modal } from "react-bootstrap";
-import { UserContext } from "../services/authentication/user.context";
+import { UserContext } from "../../services/authentication/user.context";
 
 const LogIn = ({ users }) => {
   console.log("Renderizando LogIn");
