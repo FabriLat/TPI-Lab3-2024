@@ -3,7 +3,7 @@ import { Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "../../services/theme/theme.context";
 import { UserContext } from "../../services/authentication/user.context";
-import UserShowsBuyed from "../userShowsBuyed/userShowsBuyed";
+import UserBoughtShows from "../userBoughtShows/UserBoughtShows";
 
 const ClientNavBar = () => {
   const navItems = [
@@ -83,7 +83,7 @@ const ClientNavBar = () => {
                 Mis Funciones
               </button>
             </li>
-            <UserShowsBuyed
+            <UserBoughtShows
               show={modalShow}
               handleClose={() => setModalShow(false)}
               boughtShows={boughtShows}

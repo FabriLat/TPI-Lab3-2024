@@ -1,6 +1,6 @@
 import { Modal, Button, Card, Row, Col } from "react-bootstrap";
 
-const UserShowsBuyed = ({ show, handleClose, boughtShows }) => {
+const UserBoughtShows = ({ show, handleClose, boughtShows }) => {
   return (
     <Modal show={show} onHide={handleClose} size="lg" centered>
       <Modal.Header closeButton>
@@ -46,4 +46,4 @@ const UserShowsBuyed = ({ show, handleClose, boughtShows }) => {
   );
 };
 
-export default UserShowsBuyed;
+export default UserBoughtShows;
