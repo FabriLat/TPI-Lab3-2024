@@ -43,6 +43,7 @@ const AddMovieModal = ({ show, onHide, addMovieHandler }) => {
       rating: parseFloat(rating),
       runTime: parseInt(runTime, 10),
       shows: shows,
+      description: description
     };
 
     addMovieHandler(newMovie);
@@ -51,6 +52,7 @@ const AddMovieModal = ({ show, onHide, addMovieHandler }) => {
     setRunTime("");
     setRating("");
     setShows("");
+    setDescription("");
     onHide();
     setTimeout(() => {
       alert("Se registró la pelicula exitosamente!!");
