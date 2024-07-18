@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import Dashboard from "./components/dashboard/Dashboard";
 import SignIn from "./components/signIn/SignIn";
 import LogIn from "./components/logIn/LogIn";
@@ -29,27 +29,25 @@ function App() {
   }, []);
 
   // añadir pelicula. uso de useCallback
-  const addMovieHandler = useCallback(
-    async (newMovie) => {
-      try {
-        console.log("Ejecutando callback addMovie");
-        await fetch("http://localhost:8000/movies", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newMovie),
-        });
-        setMovies([newMovie, ...movies]);
-      } catch (error) {
-        console.log("Error al agregar película a la base de datos:", error);
-      }
-    },
-    [movies]
-  );
+  const addMovieHandler = async (newMovie) => {
+    try {
+      console.log("Ejecutando callback addMovie");
+      await fetch("http://localhost:8000/movies", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newMovie),
+      });
+
+      await fetchMovies();
+    } catch (error) {
+      console.log("Error al agregar película a la base de datos:", error);
+    }
+  };
 
   // eliminar pelicula. uso de useCallback
-  const deleteMovieHandler = useCallback(async (movieId) => {
+  const deleteMovieHandler = async (movieId) => {
     try {
       console.log("Ejecutando callback deleteMovie");
       await fetch(`http://localhost:8000/movies/${movieId}`, {
@@ -62,37 +60,37 @@ function App() {
     } catch (error) {
       console.log("Error al eliminar película de la base de datos:", error);
     }
-  }, []);
+  };
 
   // modificar pelicula. uso de UseCallback
-  const modifyMovieHandler = useCallback(async (updatedMovie) => {
+  const modifyMovieHandler = async (updatedMovie) => {
     try {
       console.log("Ejecutando callback modifyMovie");
-      const response = await fetch(`http://localhost:8000/movies/${updatedMovie.id}`);
+      const response = await fetch(
+        `http://localhost:8000/movies/${updatedMovie.id}`
+      );
       const currentMovie = await response.json();
 
-        // Combino los datos nuevos con los datos existentes
-        const updatedMoviee = {
-          ...currentMovie,
-          ...updatedMovie,
-        };
+      // Combino los datos nuevos con los datos existentes
+      const updatedMoviee = {
+        ...currentMovie,
+        ...updatedMovie,
+      };
 
-    // Actualizo la pelicula en la base sin que se eliminen sus propiedades que no son modificadas
-    await fetch(`http://localhost:8000/movies/${updatedMovie.id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updatedMoviee),
-    });
+      // Actualizo la pelicula en la base sin que se eliminen sus propiedades que no son modificadas
+      await fetch(`http://localhost:8000/movies/${updatedMovie.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedMoviee),
+      });
 
-    await fetchMovies();
-  } 
-  catch (error) {
+      await fetchMovies();
+    } catch (error) {
       console.log("Error al modificar pelicula en la base de datos:", error);
-  }
-}, [])
-
+    }
+  };
 
   //----------------------FUNCIONES USERS------------------------------
 

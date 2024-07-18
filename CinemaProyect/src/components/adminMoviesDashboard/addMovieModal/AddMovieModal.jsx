@@ -37,13 +37,13 @@ const AddMovieModal = ({ show, onHide, addMovieHandler }) => {
 
   const handleSubmit = () => {
     const newMovie = {
-      id: 0,
+      id: Math.random(),
       title: title,
       image: image,
       rating: parseFloat(rating),
       runTime: parseInt(runTime, 10),
       shows: shows,
-      description: description
+      description: description,
     };
 
     addMovieHandler(newMovie);
