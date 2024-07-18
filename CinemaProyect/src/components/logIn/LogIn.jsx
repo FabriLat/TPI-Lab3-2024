@@ -46,7 +46,7 @@ const LogIn = ({ users }) => {
           id: loggedUser[0].id,
           userName: loggedUser[0].userName,
           email: loggedUser[0].email,
-          showsBuyed: loggedUser[0].showsBuyed,
+          boughtShows: loggedUser[0].boughtShows,
           type: loggedUser[0].type,
         };
       }

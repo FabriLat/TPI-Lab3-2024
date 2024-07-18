@@ -36,7 +36,7 @@ const ModalToAddUser = ({ show, handleClose, addUser }) => {
       userName: userName,
       email: email,
       password: password,
-      showsBuyed: [],
+      boughtShows: [],
       type: rolUser,
     };
 
