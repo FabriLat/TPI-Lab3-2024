@@ -1,5 +1,5 @@
 // AddMovieModal.js
-import { Modal, Form, Button } from "react-bootstrap";
+import { Modal, Form, Button, FormGroup } from "react-bootstrap";
 import { useState } from "react";
 import PropTypes from "prop-types";
 
@@ -9,6 +9,7 @@ const AddMovieModal = ({ show, onHide, addMovieHandler }) => {
   const [shows, setShows] = useState("");
   const [rating, setRating] = useState("");
   const [runTime, setRunTime] = useState("");
+  const [description, setDescription] = useState("");
 
   const changeTitleHandler = (event) => {
     setTitle(event.target.value);
@@ -24,6 +25,10 @@ const AddMovieModal = ({ show, onHide, addMovieHandler }) => {
 
   const changeShowsHandler = (event) => {
     setShows(event.target.value);
+  };
+
+  const changeDescriptionHandler = (event) => {
+    setDescription(event.target.value);
   };
 
   const changeRatingHandler = (event) => {
@@ -50,10 +55,7 @@ const AddMovieModal = ({ show, onHide, addMovieHandler }) => {
     setTimeout(() => {
       alert("Se registró la pelicula exitosamente!!");
     }, 200);
-
   };
-
-
 
   return (
     <Modal show={show} onHide={onHide}>
@@ -93,6 +95,15 @@ const AddMovieModal = ({ show, onHide, addMovieHandler }) => {
               style={{ color: "black" }}
             />
           </Form.Group>
+          <FormGroup className="mb-3">
+            <Form.Label style={{ color: "black" }}>Descripción</Form.Label>
+            <Form.Control
+              type="text"
+              onChange={changeDescriptionHandler}
+              value={description}
+              style={{ color: "black" }}
+            />
+          </FormGroup>
           <Form.Group className="mb-3">
             <Form.Label style={{ color: "black" }}>Rating</Form.Label>
             <Form.Control

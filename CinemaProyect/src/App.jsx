@@ -68,22 +68,31 @@ function App() {
   const modifyMovieHandler = useCallback(async (updatedMovie) => {
     try {
       console.log("Ejecutando callback modifyMovie");
-      await fetch(`http://localhost:8000/movies/${updatedMovie.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedMovie),
-      });
-      setMovies((prevMovies) =>
-        prevMovies.map((movie) =>
-          movie.id === updatedMovie.id ? updatedMovie : movie
-        )
-      );
-    } catch (error) {
-      console.log("Error al modificar película en la base de datos:", error);
-    }
-  }, []);
+      const response = await fetch(`http://localhost:8000/movies/${updatedMovie.id}`);
+      const currentMovie = await response.json();
+
+        // Combino los datos nuevos con los datos existentes
+        const updatedMoviee = {
+          ...currentMovie,
+          ...updatedMovie,
+        };
+
+    // Actualizo la pelicula en la base sin que se eliminen sus propiedades que no son modificadas
+    await fetch(`http://localhost:8000/movies/${updatedMovie.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedMoviee),
+    });
+
+    await fetchMovies();
+  } 
+  catch (error) {
+      console.log("Error al modificar pelicula en la base de datos:", error);
+  }
+}, [])
+
 
   //----------------------FUNCIONES USERS------------------------------
 
