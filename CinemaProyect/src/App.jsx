@@ -183,7 +183,11 @@ function App() {
 
     {
       path: "/movie/:id",
-      element: <MovieDetails movies={movies} />,
+      element: (
+        <Protected>
+          <MovieDetails movies={movies} />
+        </Protected>
+      ),
     },
     {
       path: "/userbase",

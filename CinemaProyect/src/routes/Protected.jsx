@@ -8,7 +8,10 @@ const Protected = ({ children }) => {
 
   if (user && user.type === "admin") {
     return children;
+  } else if (user) {
+    return children;
   } else {
+    alert("Es necesario que inicie sesion o tenga permiso de admin");
     return <Navigate to="/movies"></Navigate>;
   }
 };
