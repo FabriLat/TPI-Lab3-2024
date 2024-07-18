@@ -56,7 +56,7 @@ const AdminMoviesDashboard = ({
             className="mb-4"
             onClick={handleOpenAddModal}
           >
-            Agregar Nueva Película
+            + Agregar Nueva Película
           </Button>
           {movies.length > 0
             ? movies.map((movie) => (

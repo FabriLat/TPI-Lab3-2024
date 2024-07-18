@@ -23,7 +23,7 @@ const AdminNavBar = () => {
   };
 
   return (
-    <Row>
+    <Row style={{ backgroundColor: "rgb(7 0 8)" }}>
       <nav className="">
         <ul className="nav justify-content-between">
           <Col md={3} className="d-flex align-items-center">
