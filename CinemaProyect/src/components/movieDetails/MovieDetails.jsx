@@ -7,12 +7,11 @@ import AdminNavBar from "../adminNavBar/AdminNavBar";
 import NavBar from "../navBar/NavBar";
 import { UserContext } from "../../services/authentication/user.context";
 
-const MovieDetails = ({movies}) => {
+const MovieDetails = ({ movies }) => {
   const location = useLocation();
   const [modalShow, setModalShow] = useState(false);
   const { title, image, rating, runTime, description } =
-  location.state && location.state.movie ? location.state.movie : {};
-
+    location.state && location.state.movie ? location.state.movie : {};
 
   const handleModalClose = () => setModalShow(false);
   const handleModalShow = () => setModalShow(true);
@@ -42,7 +41,9 @@ const MovieDetails = ({movies}) => {
             <p>Rating: {rating} / 5</p>
             <p>Duración: {runTime} mins</p>
           </Col>
-          <Col md={8} className="mt-5"> {/* Añadido un margen top adicional */}
+          <Col md={8} className="mt-5">
+            {" "}
+            {/* Añadido un margen top adicional */}
             <p
               style={{
                 fontSize: "20px",
@@ -62,7 +63,13 @@ const MovieDetails = ({movies}) => {
         </Row>
       </Container>
 
-      <ModalToBuy selectedMovie={selectedMovie} movies={movies} show={modalShow} handleClose={handleModalClose} />
+      <ModalToBuy
+        selectedMovie={selectedMovie}
+        movies={movies}
+        movieTitle={title}
+        show={modalShow}
+        handleClose={handleModalClose}
+      />
     </>
   );
 };

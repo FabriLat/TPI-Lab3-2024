@@ -6,14 +6,12 @@ import DeleteMovieModal from "./deleteMovieModal/DeleteMovieModal";
 import AddMovieModal from "./addMovieModal/AddMovieModal";
 import ModifyMovieModal from "./modifyMovieModal/ModifyMovieModal";
 
-
 const AdminMoviesDashboard = ({
   movies,
   addMovieHandler,
   deleteMovieHandler,
   modifyMovieHandler,
 }) => {
-
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [showModifyModal, setShowModifyModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -108,7 +106,6 @@ const AdminMoviesDashboard = ({
                       </Button>
                       <Button variant="success" className="m-1">
                         Comprar entrada
-                        
                       </Button>
                     </Card.Body>
                   </Card>
