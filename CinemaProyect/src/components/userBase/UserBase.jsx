@@ -29,6 +29,27 @@ const UserBase = ({ listUsers, onDeletUserHandler, addUser, modifyUser }) => {
 
   return (
     <>
+      <style>
+        {`
+          .custom-scrollbar::-webkit-scrollbar {
+            width: 12px;
+          }
+
+          .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+          }
+
+          .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+          }
+
+          .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #555;
+          }
+        `}
+      </style>
       <AdminNavBar />
       <h1 className="text-center mt-5" style={{ marginBottom: "170px" }}>
         Base de Datos de Usuarios
@@ -58,7 +79,7 @@ const UserBase = ({ listUsers, onDeletUserHandler, addUser, modifyUser }) => {
           </Row>
           <Col md={{ span: 12, offset: 0 }}>
             <ListGroup
-              className="border rounded p-3"
+              className="custom-scrollbar border rounded p-3"
               style={{
                 height: "50vh",
                 overflowY: "auto",
