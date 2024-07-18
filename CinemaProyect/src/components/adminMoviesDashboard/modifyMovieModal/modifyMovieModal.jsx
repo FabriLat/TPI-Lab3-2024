@@ -11,23 +11,24 @@ const ModifyMovieModal = ({ show, onHide, modifyMovieHandler, movie, movies }) =
   const [runTime, setRunTime] = useState("");
 
   const selectedMovie = title;
-
+  
   useEffect(() => {
     if (movie) {
       setTitle(movie.title);
       setImage(movie.image);
-      setShows(movie.shows.showtime);
+      setShows(movie.shows ? movie.shows.showtime : "");
       setRating(movie.rating.toString());
       setRunTime(movie.runTime.toString());
     }
   }, [movie]);
+  
 
   const changeTitleHandler = (event) => {
     setTitle(event.target.value);
   };
 
-  const changeImageHandler = () => {
-    
+  const changeImageHandler = (event) => {
+    setImage(event.target.value);
   };
 
   const changeRunTimeHandler = (event) => {
@@ -98,18 +99,27 @@ const ModifyMovieModal = ({ show, onHide, modifyMovieHandler, movie, movies }) =
           <Form.Group className="mb-3">
             <Form.Label style={{ color: "black" }}>Funciones</Form.Label>
             <DropdownButton
-              id="dropdown-basic-button"
-              variant="dark"
-              title="Modificar funciones"
-            >
-              {movies.map((movie) =>
-                movie.shows.map((show) =>
-                  show.movie === selectedMovie ? (
-                    <DropdownItem onSelect={changeShowsHandler} eventKey={show.time} key={show.id}>{show.time} hs</DropdownItem>
-                  ) : null
-                )
-              )}
-            </DropdownButton>
+  id="dropdown-basic-button"
+  variant="dark"
+  title="Modificar funciones"
+>
+  {movies.map((movie) =>
+    movie.shows && Array.isArray(movie.shows) && (
+      movie.shows.map((show) =>
+        show.movie === selectedMovie ? (
+          <DropdownItem
+            onSelect={() => changeShowsHandler(show.time)}
+            eventKey={show.time}
+            key={show.id}
+          >
+            {show.time} hs
+          </DropdownItem>
+        ) : null
+      )
+    )
+  )}
+</DropdownButton>
+
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label style={{ color: "black" }}>Rating</Form.Label>

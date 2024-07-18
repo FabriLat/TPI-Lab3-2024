@@ -66,13 +66,15 @@ const ModalToBuy = ({ show, handleClose, movies, selectedMovie }) => {
             >
               {movies &&
                 movies.map((movie) =>
-                  movie.shows.map((show) =>
-                    show.movie === selectedMovie ? (
-                      <DropdownItem eventKey={show.time} key={show.id}>
-                        {show.time} hs
-                      </DropdownItem>
-                    ) : null
-                  )
+                  movie.shows && Array.isArray(movie.shows)
+                    ? movie.shows.map((show) =>
+                        show.movie === selectedMovie ? (
+                          <DropdownItem eventKey={show.time} key={show.id}>
+                            {show.time} hs
+                          </DropdownItem>
+                        ) : null
+                      )
+                    : null
                 )}
             </DropdownButton>
           </Form.Group>

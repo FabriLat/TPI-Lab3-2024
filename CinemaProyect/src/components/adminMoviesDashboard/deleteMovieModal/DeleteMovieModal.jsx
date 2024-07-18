@@ -3,15 +3,17 @@ import { Modal, Button } from "react-bootstrap";
 import PropTypes from "prop-types";
 
 const DeleteMovieModal = ({ show, onHide, deleteMovieHandler, movie }) => {
+ 
   const handleDelete = () => {
     if (movie && movie.id) {
       deleteMovieHandler(movie.id);
+      onHide();
+      setTimeout(() => {
+        alert("Se eliminó la película exitosamente!!");
+      }, 200);
     }
-    onHide();
-    setTimeout(() => {
-      alert("Se eliminó la pelicula exitosamente!!");
-    }, 200);
   };
+  
 
   return (
     <Modal show={show} onHide={onHide}>

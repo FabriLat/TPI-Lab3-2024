@@ -11,7 +11,8 @@ const MovieDetails = ({movies}) => {
   const location = useLocation();
   const [modalShow, setModalShow] = useState(false);
   const { title, image, rating, runTime, description } =
-    location.state && location.state.movie ? location.state.movie : {};
+  location.state && location.state.movie ? location.state.movie : {};
+
 
   const handleModalClose = () => setModalShow(false);
   const handleModalShow = () => setModalShow(true);
