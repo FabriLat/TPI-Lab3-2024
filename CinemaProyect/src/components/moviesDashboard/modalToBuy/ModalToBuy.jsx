@@ -18,6 +18,7 @@ const ModalToBuy = ({
   const [metodoPago, setMetodoPago] = useState("efectivo");
   const [tarjeta, setTarjeta] = useState({ numero: "", fecha: "", cvv: "" });
   const [showtime, setShowTime] = useState("");
+  const [showtimeSelected, setShowtimeSelected] = useState("dark");
 
   // evenKey captura el valor del dropdown (item seleccionado)
   const showtimeHandler = (eventKey) => {
@@ -36,36 +37,37 @@ const ModalToBuy = ({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const usuarioLogueado = JSON.parse(localStorage.getItem("user"));
-      const idUser = usuarioLogueado.id;
-      const response = await fetch(`http://localhost:8000/users/${idUser}`);
-      const currentUser = await response.json();
+    if (showtime != "") {
+      try {
+        const usuarioLogueado = JSON.parse(localStorage.getItem("user"));
+        const idUser = usuarioLogueado.id;
+        const response = await fetch(`http://localhost:8000/users/${idUser}`);
+        const currentUser = await response.json();
 
-      const updatedUser = {
-        ...currentUser,
-        boughtShows: [
-          ...currentUser.boughtShows,
-          { movieTitle: movieTitle, showtime: showtime },
-        ],
-      };
+        const updatedUser = {
+          ...currentUser,
+          boughtShows: [
+            ...currentUser.boughtShows,
+            { movieTitle: movieTitle, showtime: showtime },
+          ],
+        };
 
-      await fetch(`http://localhost:8000/users/${idUser}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedUser),
-      });
+        await fetch(`http://localhost:8000/users/${idUser}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedUser),
+        });
 
-      setTimeout(() => {
-        alert("Compra realizada con exito!!");
-      }, 200);
-    } catch (error) {
-      console.log("Error al modificar usuario en la base de datos:", error);
-    }
-
-    handleClose();
+        setTimeout(() => {
+          alert("Compra realizada con exito!!");
+        }, 200);
+      } catch (error) {
+        console.log("Error al modificar usuario en la base de datos:", error);
+      }
+      handleClose();
+    } else setShowtimeSelected("danger");
   };
 
   return (
@@ -94,7 +96,7 @@ const ModalToBuy = ({
             </Form.Label>
             <DropdownButton
               id="dropdown-basic-button"
-              variant="dark"
+              variant={showtimeSelected}
               title={showtime === "" ? "Seleccionar horario" : showtime}
               onSelect={showtimeHandler}
             >

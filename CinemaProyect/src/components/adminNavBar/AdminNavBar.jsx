@@ -30,10 +30,11 @@ const AdminNavBar = () => {
             <li className="m-2">
               <a className="navbar-brand" href="/">
                 <img
-                  src="https://ih1.redbubble.net/image.4839257361.1382/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR01H0HqRV4PGvIaqK9uWoBATZn3_xeebFxMw&s"
                   width="70"
                   height="70"
                   alt="Logo"
+                  style={{ borderRadius: "50px" }}
                 />
               </a>
             </li>

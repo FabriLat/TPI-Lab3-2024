@@ -1,8 +1,9 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "../../services/theme/theme.context";
 import { UserContext } from "../../services/authentication/user.context";
+import UserShowsBuyed from "../userShowsBuyed/userShowsBuyed";
 
 const ClientNavBar = () => {
   const navItems = [
@@ -14,10 +15,22 @@ const ClientNavBar = () => {
   const navigate = useNavigate();
   const { toggleTheme } = useContext(ThemeContext);
   const { setUser } = useContext(UserContext);
+  const [boughtShows, setBoughtShows] = useState([]);
+  const [modalShow, setModalShow] = useState(false);
 
   const logOutHandle = () => {
     setUser(null);
     navigate("/");
+  };
+
+  const ViewBoughtShows = async () => {
+    const usuarioLogueado = JSON.parse(localStorage.getItem("user"));
+    const response = await fetch(
+      `http://localhost:8000/users/${usuarioLogueado.id}`
+    );
+    const currentUser = await response.json();
+    setBoughtShows(currentUser.boughtShows);
+    setModalShow(true);
   };
 
   return (
@@ -28,10 +41,11 @@ const ClientNavBar = () => {
             <li className="m-2">
               <a className="navbar-brand" href="/">
                 <img
-                  src="https://ih1.redbubble.net/image.4839257361.1382/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR01H0HqRV4PGvIaqK9uWoBATZn3_xeebFxMw&s"
                   width="70"
                   height="70"
                   alt="Logo"
+                  style={{ borderRadius: "50px" }}
                 />
               </a>
             </li>
@@ -61,6 +75,20 @@ const ClientNavBar = () => {
               </li>
             ))}
             <li className="m-3" key={4}>
+              <button
+                className="btn btn-dark"
+                style={{ whiteSpace: "nowrap" }}
+                onClick={ViewBoughtShows}
+              >
+                Mis Funciones
+              </button>
+            </li>
+            <UserShowsBuyed
+              show={modalShow}
+              handleClose={() => setModalShow(false)}
+              boughtShows={boughtShows}
+            />
+            <li className="m-3" key={5}>
               <button
                 className="btn btn-dark"
                 style={{ whiteSpace: "nowrap" }}
