@@ -183,7 +183,7 @@ function App() {
 
     {
       path: "/movie/:id",
-      element: <MovieDetails />,
+      element: <MovieDetails movies={movies} />,
     },
     {
       path: "/userbase",

@@ -1,20 +1,22 @@
 // ModifyMovieModal.js
-import { Modal, Form, Button } from "react-bootstrap";
+import { Modal, Form, Button, DropdownButton, DropdownItem } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-const ModifyMovieModal = ({ show, onHide, modifyMovieHandler, movie }) => {
+const ModifyMovieModal = ({ show, onHide, modifyMovieHandler, movie, movies }) => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [shows, setShows] = useState("");
   const [rating, setRating] = useState("");
   const [runTime, setRunTime] = useState("");
 
+  const selectedMovie = title;
+
   useEffect(() => {
     if (movie) {
       setTitle(movie.title);
       setImage(movie.image);
-      setShows(movie.shows);
+      setShows(movie.shows.showtime);
       setRating(movie.rating.toString());
       setRunTime(movie.runTime.toString());
     }
@@ -24,8 +26,8 @@ const ModifyMovieModal = ({ show, onHide, modifyMovieHandler, movie }) => {
     setTitle(event.target.value);
   };
 
-  const changeImageHandler = (event) => {
-    setImage(event.target.value);
+  const changeImageHandler = () => {
+    
   };
 
   const changeRunTimeHandler = (event) => {
@@ -94,13 +96,20 @@ const ModifyMovieModal = ({ show, onHide, modifyMovieHandler, movie }) => {
             />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label style={{ color: "black" }}>Horarios</Form.Label>
-            <Form.Control
-              type="text"
-              onChange={changeShowsHandler}
-              value={shows}
-              style={{ color: "black" }}
-            />
+            <Form.Label style={{ color: "black" }}>Funciones</Form.Label>
+            <DropdownButton
+              id="dropdown-basic-button"
+              variant="dark"
+              title="Modificar funciones"
+            >
+              {movies.map((movie) =>
+                movie.shows.map((show) =>
+                  show.movie === selectedMovie ? (
+                    <DropdownItem onSelect={changeShowsHandler} eventKey={show.time} key={show.id}>{show.time} hs</DropdownItem>
+                  ) : null
+                )
+              )}
+            </DropdownButton>
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label style={{ color: "black" }}>Rating</Form.Label>
@@ -117,10 +126,10 @@ const ModifyMovieModal = ({ show, onHide, modifyMovieHandler, movie }) => {
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={onHide}>
+        <Button variant="danger" onClick={onHide}>
           Cancelar
         </Button>
-        <Button variant="primary" onClick={handleSubmit}>
+        <Button variant="success" onClick={handleSubmit}>
           Guardar Cambios
         </Button>
       </Modal.Footer>

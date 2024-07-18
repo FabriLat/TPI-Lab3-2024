@@ -7,7 +7,7 @@ import AdminNavBar from "../adminNavBar/AdminNavBar";
 import NavBar from "../navBar/NavBar";
 import { UserContext } from "../../services/authentication/user.context";
 
-const MovieDetails = () => {
+const MovieDetails = ({movies}) => {
   const location = useLocation();
   const [modalShow, setModalShow] = useState(false);
   const { title, image, rating, runTime, description } =
@@ -17,6 +17,8 @@ const MovieDetails = () => {
   const handleModalShow = () => setModalShow(true);
 
   const { user } = useContext(UserContext);
+
+  const selectedMovie = title;
 
   return (
     <>
@@ -59,7 +61,7 @@ const MovieDetails = () => {
         </Row>
       </Container>
 
-      <ModalToBuy show={modalShow} handleClose={handleModalClose} />
+      <ModalToBuy selectedMovie={selectedMovie} movies={movies} show={modalShow} handleClose={handleModalClose} />
     </>
   );
 };

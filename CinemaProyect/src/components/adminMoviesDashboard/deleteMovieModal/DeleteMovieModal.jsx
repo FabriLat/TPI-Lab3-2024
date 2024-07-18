@@ -29,7 +29,7 @@ const DeleteMovieModal = ({ show, onHide, deleteMovieHandler, movie }) => {
         )}
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={onHide}>
+        <Button variant="dark" onClick={onHide}>
           Cancelar
         </Button>
         <Button variant="danger" onClick={handleDelete} disabled={!movie}>

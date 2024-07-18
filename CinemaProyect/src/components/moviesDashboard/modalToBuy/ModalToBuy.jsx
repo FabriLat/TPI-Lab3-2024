@@ -1,10 +1,23 @@
 import { useState } from "react";
-import { Modal, Button, Form } from "react-bootstrap";
+import {
+  Modal,
+  Button,
+  Form,
+  DropdownButton,
+  DropdownItem,
+} from "react-bootstrap";
 
-const ModalToBuy = ({ show, handleClose }) => {
+const ModalToBuy = ({ show, handleClose, movies, selectedMovie }) => {
   const [asientos, setAsientos] = useState(1);
   const [metodoPago, setMetodoPago] = useState("efectivo");
   const [tarjeta, setTarjeta] = useState({ numero: "", fecha: "", cvv: "" });
+  const [showtime, setShowTime] = useState("");
+
+  // evenKey captura el valor del dropdown (item seleccionado)
+  const showtimeHandler = (eventKey) => {
+    setShowTime(eventKey);
+    console.log("Función seleccionada: ", eventKey);
+  };
 
   const handleMetodoPagoChange = (e) => {
     setMetodoPago(e.target.value);
@@ -30,7 +43,7 @@ const ModalToBuy = ({ show, handleClose }) => {
             marginTop: "10px",
           }}
         >
-          Comprar Boletos
+          Comprar Entradas
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -43,15 +56,25 @@ const ModalToBuy = ({ show, handleClose }) => {
                 fontWeight: "bold",
               }}
             >
-              Funciónes
+              Funciones
             </Form.Label>
-            <Form.Control as="select">
-              {/* {funciones.map((funcion, index) => (
-                <option key={index} value={funcion}>
-                  {funcion}
-                </option>
-              ))} */}
-            </Form.Control>
+            <DropdownButton
+              id="dropdown-basic-button"
+              variant="dark"
+              title={showtime === "" ? "Seleccionar horario" : showtime}
+              onSelect={showtimeHandler}
+            >
+              {movies &&
+                movies.map((movie) =>
+                  movie.shows.map((show) =>
+                    show.movie === selectedMovie ? (
+                      <DropdownItem eventKey={show.time} key={show.id}>
+                        {show.time} hs
+                      </DropdownItem>
+                    ) : null
+                  )
+                )}
+            </DropdownButton>
           </Form.Group>
 
           <Form.Group controlId="formAsientos">
@@ -161,7 +184,7 @@ const ModalToBuy = ({ show, handleClose }) => {
             </>
           )}
 
-          <Button variant="primary" type="submit" style={{ marginTop: "30px" }}>
+          <Button variant="dark" type="submit" style={{ marginTop: "30px" }}>
             Comprar
           </Button>
         </Form>

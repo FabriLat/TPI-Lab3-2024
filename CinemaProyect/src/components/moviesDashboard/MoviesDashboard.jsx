@@ -19,7 +19,6 @@ const MoviesDashboard = ({ movies }) => {
     let rating = movie.rating;
     let runTime = movie.runTime;
     let description = movie.description;
-    console.log(movie.description);
 
     navigate(`/movie/${id}`, {
       state: {
