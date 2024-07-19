@@ -4,6 +4,7 @@ import { UserContext } from "../../services/authentication/user.context";
 import AdminNavBar from "../adminNavBar/AdminNavBar";
 import ClientNavBar from "../clientNavBar/ClientNavBar";
 import NavBar from "../navBar/NavBar";
+import Footer from "../footer/Footer";
 
 const Dashboard = () => {
   const { user } = useContext(UserContext);
@@ -62,6 +63,7 @@ const Dashboard = () => {
           </Carousel.Item>
         </Carousel>
       </Container>
+      <Footer/>
     </div>
   );
 };

@@ -78,7 +78,7 @@ const LogIn = ({ users }) => {
             />
           </Col>
         </Form.Group>
-        <Form.Group as={Row} className="m-4 d-flex justify-content-center">
+        <Form.Group as={Row} className="m-4  d-flex justify-content-center">
           <Col sm="3">
             <Form.Label>Contraseña</Form.Label>
             <Form.Control
@@ -86,6 +86,13 @@ const LogIn = ({ users }) => {
               type="password"
               placeholder="Ingresá tu contraseña"
             />
+            <a
+              href="#"
+              className="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+            >
+              Olvidé mi contraseña
+            </a>
+
             <Button
               type="submit"
               variant="dark"
@@ -93,8 +100,8 @@ const LogIn = ({ users }) => {
             >
               Iniciar sesión
             </Button>
-            <p style={{marginTop: "40px"}}>Alto de pantalla: {height}px 🖥️</p>
-            <p style={{marginTop: "40px"}}>Ancho de pantalla: {width}px 🖥️</p>
+            <p style={{ marginTop: "40px" }}>Alto de pantalla: {height}px 🖥️</p>
+            <p style={{ marginTop: "40px" }}>Ancho de pantalla: {width}px 🖥️</p>
           </Col>
         </Form.Group>
       </Form>

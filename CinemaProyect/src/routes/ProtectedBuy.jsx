@@ -6,10 +6,10 @@ import { UserContext } from "../services/authentication/user.context";
 const Protected = ({ children }) => {
   const { user } = useContext(UserContext);
 
-  if (user && user.type === "admin") {
+  if (user ) {
     return children;
   } else {
-    alert("Es necesario que tenga permiso de admin");
+    alert("Es necesario que inicie sesion para realizar una compra.");
     return <Navigate to="/movies"></Navigate>;
   }
 };

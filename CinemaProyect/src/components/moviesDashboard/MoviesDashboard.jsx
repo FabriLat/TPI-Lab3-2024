@@ -6,6 +6,7 @@ import { UserContext } from "../../services/authentication/user.context";
 import AdminNavBar from "../adminNavBar/AdminNavBar";
 import NavBar from "../navBar/NavBar";
 import { useNavigate } from "react-router-dom";
+import Footer from "../footer/Footer";
 
 const MoviesDashboard = ({ movies }) => {
   console.log("renderizado /movies");
@@ -85,6 +86,7 @@ const MoviesDashboard = ({ movies }) => {
             : null}
         </Row>
       </Container>
+      <Footer/>
     </>
   );
 };

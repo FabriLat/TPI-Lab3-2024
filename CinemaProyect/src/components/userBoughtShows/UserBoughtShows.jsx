@@ -4,7 +4,7 @@ const UserBoughtShows = ({ show, handleClose, boughtShows }) => {
   return (
     <Modal show={show} onHide={handleClose} size="lg" centered>
       <Modal.Header closeButton>
-        <Modal.Title>Mis Funciones Compradas</Modal.Title>
+        <Modal.Title style={{ color: "black"}}>Mis Funciones Compradas</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Row className="d-flex justify-content-center">

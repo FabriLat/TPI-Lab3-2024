@@ -5,6 +5,7 @@ import LogIn from "./components/logIn/LogIn";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import MoviesDashboard from "./components/moviesDashboard/MoviesDashboard";
 import Protected from "./routes/Protected";
+import ProtectedBuy from "./routes/ProtectedBuy";
 import NotFound from "./routes/NotFound";
 import UserBase from "./components/userBase/UserBase";
 import AdminMoviesDashboard from "./components/adminMoviesDashboard/AdminMoviesDashboard";
@@ -191,9 +192,9 @@ function App() {
     {
       path: "/movie/:id",
       element: (
-        <Protected>
+        <ProtectedBuy>
           <MovieDetails movies={movies} />
-        </Protected>
+        </ProtectedBuy>
       ),
     },
     {
