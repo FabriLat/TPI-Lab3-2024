@@ -17,6 +17,9 @@ const AdminMoviesDashboard = ({
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
 
+// calculo id de prox peli a agregar
+  const nextId = movies.length > 0 ? Math.max(...movies.map(movie => movie.id)) + 1 : 1;
+
   const handleOpenModifyModal = (movie) => {
     setSelectedMovie(movie);
     setShowModifyModal(true);
@@ -124,7 +127,7 @@ const AdminMoviesDashboard = ({
       <AddMovieModal
         show={showAddModal}
         onHide={handleCloseAddModal}
-        addMovieHandler={addMovieHandler}
+        addMovieHandler={(movie) => addMovieHandler({ ...movie, id: nextId })}
       />
       <ModifyMovieModal
         show={showModifyModal}
