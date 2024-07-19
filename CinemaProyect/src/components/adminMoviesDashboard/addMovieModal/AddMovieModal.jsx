@@ -118,7 +118,7 @@ const AddMovieModal = ({ show, onHide, addMovieHandler, nextId }) => {
               value={showDetails.time}
               style={{ color: "black" }}
             />
-            <Button onClick={addShow} variant="primary" className="mt-2">
+            <Button onClick={addShow} variant="dark" className="mt-2">
               Agregar Función
             </Button>
             <ul style={{color: "black"}} className="mt-2">
