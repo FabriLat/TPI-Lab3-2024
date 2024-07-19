@@ -63,7 +63,7 @@ const SignIn = ({ onRegister }) => {
           userName: user,
           email: email,
           password: password,
-          boughtShows: 0,
+          boughtShows: [],
           type: "client",
         };
         onRegister(userRegister);
