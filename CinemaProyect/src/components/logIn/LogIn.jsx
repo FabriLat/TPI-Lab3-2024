@@ -5,8 +5,25 @@ import { useRef, useState, useContext } from "react";
 import { Modal } from "react-bootstrap";
 import { UserContext } from "../../services/authentication/user.context";
 import useWindowSize from "../../custom/useWindowSize";
-
+import useEnglishTranslator from "../../custom/useEnglishTranslator";
 const LogIn = ({ users }) => {
+
+  // custom hook
+  const [isEnglish, setIsEnglish] = useState(false);
+
+  const handleLanguageSwitch = () => {
+    setIsEnglish(!isEnglish);
+  }
+
+
+  const loginTitle = useEnglishTranslator("Iniciar sesión", isEnglish);
+  const userInputText = useEnglishTranslator("Usuario/Email", isEnglish);
+  const passwordInputText = useEnglishTranslator("Contraseña", isEnglish);
+  const loginButtonText = useEnglishTranslator("Iniciar sesión", isEnglish);
+  const widthText = useEnglishTranslator("Ancho de pantalla", isEnglish);
+  const heightText = useEnglishTranslator("Alto de pantalla", isEnglish);
+  const forgotPasswordText = useEnglishTranslator("Olvidé mi contraseña", isEnglish);
+
   console.log("Renderizando LogIn");
   const { setUser } = useContext(UserContext);
   const { width, height } = useWindowSize();
@@ -66,11 +83,11 @@ const LogIn = ({ users }) => {
 
   return (
     <>
-      <h1 className="d-flex justify-content-center mt-4">Iniciar sesión</h1>
+      <h1 className="d-flex justify-content-center mt-4">{loginTitle}</h1>
       <Form onSubmit={logInHandler}>
         <Form.Group as={Row} className="m-4 d-flex justify-content-center">
           <Col sm="3">
-            <Form.Label>Usuario/Email</Form.Label>
+            <Form.Label>{userInputText}</Form.Label>
             <Form.Control
               ref={userRef}
               placeholder="Ingresá tu usuario o email"
@@ -80,7 +97,7 @@ const LogIn = ({ users }) => {
         </Form.Group>
         <Form.Group as={Row} className="m-4  d-flex justify-content-center">
           <Col sm="3">
-            <Form.Label>Contraseña</Form.Label>
+            <Form.Label>{passwordInputText}</Form.Label>
             <Form.Control
               ref={passRef}
               type="password"
@@ -90,7 +107,7 @@ const LogIn = ({ users }) => {
               href="#"
               className="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
             >
-              Olvidé mi contraseña
+              {forgotPasswordText}
             </a>
 
             <Button
@@ -98,10 +115,13 @@ const LogIn = ({ users }) => {
               variant="dark"
               className=" mt-4 d-flex justify-content-center text-align-center align-items-center"
             >
-              Iniciar sesión
+              {loginButtonText}
             </Button>
-            <p style={{ marginTop: "40px" }}>Alto de pantalla: {height}px 🖥️</p>
-            <p style={{ marginTop: "40px" }}>Ancho de pantalla: {width}px 🖥️</p>
+            <Button onClick={handleLanguageSwitch} variant="dark" style={{"marginTop": "10px"}}>
+          {isEnglish ? "Cambiar a Español" : "Translate to English"}
+        </Button>
+            <p style={{ marginTop: "40px" }}>{widthText}: {height}px 🖥️</p>
+            <p style={{ marginTop: "40px" }}>{heightText}: {width}px 🖥️</p>
           </Col>
         </Form.Group>
       </Form>
