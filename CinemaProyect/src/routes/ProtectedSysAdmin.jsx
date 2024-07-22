@@ -9,7 +9,7 @@ const ProtectedSysAdmin = ({ children }) => {
   if (user && user.type === "sysadmin") {
     return children;
   } else {
-    alert("Es necesario que tenga permiso de admin");
+    alert("Es necesario que tenga permiso de SysAdmin");
     return <Navigate to="/movies"></Navigate>;
   }
 };
