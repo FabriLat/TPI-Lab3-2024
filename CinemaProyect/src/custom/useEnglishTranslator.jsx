@@ -9,7 +9,9 @@ const useEnglishTranslator = (text, translateToEnglish) => {
         "Contraseña": "Password",
         "Olvidé mi contraseña": "Forgot password",
         "Ancho de pantalla": "Display width",
-        "Alto de pantalla": "Display height"
+        "Alto de pantalla": "Display height",
+        "Ingresá tu usuario o email": "Enter your user or email",
+        "Ingresá tu contraseña": "Enter your password"
 
     }
 

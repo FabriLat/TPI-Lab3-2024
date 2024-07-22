@@ -23,6 +23,8 @@ const LogIn = ({ users }) => {
   const widthText = useEnglishTranslator("Ancho de pantalla", isEnglish);
   const heightText = useEnglishTranslator("Alto de pantalla", isEnglish);
   const forgotPasswordText = useEnglishTranslator("Olvidé mi contraseña", isEnglish);
+  const userInputPlaceholder = useEnglishTranslator("Ingresá tu usuario o email", isEnglish);
+  const passwordInputPlaceholder = useEnglishTranslator("Ingresá tu contraseña", isEnglish);
 
   console.log("Renderizando LogIn");
   const { setUser } = useContext(UserContext);
@@ -90,7 +92,7 @@ const LogIn = ({ users }) => {
             <Form.Label>{userInputText}</Form.Label>
             <Form.Control
               ref={userRef}
-              placeholder="Ingresá tu usuario o email"
+              placeholder={userInputPlaceholder}
               type="text"
             />
           </Col>
@@ -101,7 +103,7 @@ const LogIn = ({ users }) => {
             <Form.Control
               ref={passRef}
               type="password"
-              placeholder="Ingresá tu contraseña"
+              placeholder={passwordInputPlaceholder}
             />
             <a
               href="#"
