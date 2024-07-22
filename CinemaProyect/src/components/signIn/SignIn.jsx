@@ -1,8 +1,30 @@
 import { Form, Row, Col, Button } from "react-bootstrap";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useEnglishTranslator from "../../custom/useEnglishTranslator";
 
 const SignIn = ({ onRegister }) => {
+
+
+// custom hook
+const [isEnglish, setIsEnglish] = useState(false);
+
+const handleLanguageSwitch = () => {
+  setIsEnglish(!isEnglish);
+}
+
+
+const signinTitle = useEnglishTranslator("Registrarse", isEnglish);
+const userInputText = useEnglishTranslator("Usuario", isEnglish);
+const passwordInputText = useEnglishTranslator("Contraseña", isEnglish);
+const confirmPasswordText = useEnglishTranslator("Confirmar contraseña", isEnglish);
+const userInputPlaceholder = useEnglishTranslator("Ingresá tu usuario", isEnglish);
+const passwordInputPlaceholder = useEnglishTranslator("Ingresá tu contraseña", isEnglish);
+const confirmPasswordInputPlaceholder = useEnglishTranslator("Confirmá tu contraseña", isEnglish);
+const emailInputText = useEnglishTranslator("Ingresá tu email", isEnglish);
+
+
+
   const navigate = useNavigate();
   // useRef para acceder al dom
   const userRef = useRef(null);
@@ -76,15 +98,15 @@ const SignIn = ({ onRegister }) => {
 
   return (
     <>
-      <h1 className="d-flex justify-content-center mt-4">Registrarse</h1>
+      <h1 className="d-flex justify-content-center mt-4">{signinTitle}</h1>
       <Form onSubmit={signInHandler}>
         <Form.Group as={Row} className="m-4 d-flex justify-content-center">
           <Col sm="3">
-            <Form.Label>Usuario</Form.Label>
+            <Form.Label>{userInputText}</Form.Label>
             <Form.Control
               ref={userRef}
               className={errors.user ? "border border-danger" : ""}
-              placeholder="Ingresá tu usuario"
+              placeholder={userInputPlaceholder}
               type="text"
             />
           </Col>
@@ -96,36 +118,39 @@ const SignIn = ({ onRegister }) => {
               ref={emailRef}
               className={errors.email ? "border border-danger" : ""}
               type="email"
-              placeholder="Ingresá tu email"
+              placeholder={emailInputText}
             />
           </Col>
         </Form.Group>
         <Form.Group as={Row} className="m-4 d-flex justify-content-center">
           <Col sm="3">
-            <Form.Label>Contraseña</Form.Label>
+            <Form.Label>{passwordInputText}</Form.Label>
             <Form.Control
               ref={passRef}
               className={errors.password ? "border border-danger" : ""}
               type="password"
-              placeholder="Ingresá tu contraseña"
+              placeholder={passwordInputPlaceholder}
             />
           </Col>
         </Form.Group>
         <Form.Group as={Row} className="m-4 d-flex justify-content-center">
           <Col sm="3">
-            <Form.Label>Confirmar contraseña</Form.Label>
+            <Form.Label>{confirmPasswordText}</Form.Label>
             <Form.Control
               ref={secondPassRef}
               className={errors.secondPassword ? "border border-danger" : ""}
               type="password"
-              placeholder="Confirmá tu contraseña"
+              placeholder={confirmPasswordInputPlaceholder}
             />
+             <Button onClick={handleLanguageSwitch} variant="dark" style={{"marginTop": "10px"}}>
+          {isEnglish ? "Cambiar a Español" : "Translate to English"}
+        </Button>
             <Button
               type="submit"
               variant="dark"
               className=" mt-4 d-flex justify-content-center text-align-center align-items-center"
             >
-              Registrarse
+              {signinTitle}
             </Button>
           </Col>
         </Form.Group>
