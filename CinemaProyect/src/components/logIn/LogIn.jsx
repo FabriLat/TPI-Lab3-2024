@@ -120,7 +120,7 @@ const LogIn = ({ users }) => {
               {loginButtonText}
             </Button>
             <Button onClick={handleLanguageSwitch} variant="dark" style={{"marginTop": "10px"}}>
-          {isEnglish ? "Cambiar a Español" : "Translate to English"}
+          {isEnglish ? "Cambiar a Español" : "Cambiar a Inglés"}
         </Button>
             <p style={{ marginTop: "40px" }}>{widthText}: {height}px 🖥️</p>
             <p style={{ marginTop: "40px" }}>{heightText}: {width}px 🖥️</p>
