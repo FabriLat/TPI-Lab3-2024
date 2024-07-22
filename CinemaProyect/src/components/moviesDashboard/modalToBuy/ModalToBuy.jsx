@@ -59,7 +59,7 @@ const ModalToBuy = ({
           },
           body: JSON.stringify(updatedUser),
         });
-
+          
         setTimeout(() => {
           alert("Compra realizada con exito!!");
         }, 200);

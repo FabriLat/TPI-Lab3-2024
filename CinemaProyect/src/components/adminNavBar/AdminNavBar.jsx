@@ -1,8 +1,9 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "../../services/theme/theme.context";
 import { UserContext } from "../../services/authentication/user.context";
+import UserBoughtShows from "../userBoughtShows/UserBoughtShows";
 
 const AdminNavBar = () => {
   const navItems = [
@@ -16,11 +17,24 @@ const AdminNavBar = () => {
   const navigate = useNavigate();
   const { toggleTheme } = useContext(ThemeContext);
   const { setUser } = useContext(UserContext);
+  const [boughtShows, setBoughtShows] = useState([]);
+  const [modalShow, setModalShow] = useState(false);
 
   const logOutHandle = () => {
     setUser(null);
     navigate("/");
   };
+
+  const ViewBoughtShows = async () => {
+    const usuarioLogueado = JSON.parse(localStorage.getItem("user"));
+    const response = await fetch(
+      `http://localhost:8000/users/${usuarioLogueado.id}`
+    );
+    const currentUser = await response.json();
+    setBoughtShows(currentUser.boughtShows);
+    setModalShow(true);
+  };
+
 
   return (
     <nav
@@ -61,6 +75,20 @@ const AdminNavBar = () => {
                 </button>
               </li>
             ))}
+            <li className="nav-item">
+              <button
+                className="btn btn-dark me-3"
+                style={{ whiteSpace: "nowrap" }}
+                onClick={ViewBoughtShows}
+              >
+                Mis Funciones
+              </button>
+            </li>
+            <UserBoughtShows
+              show={modalShow}
+              handleClose={() => setModalShow(false)}
+              boughtShows={boughtShows}
+            />
             <li className="nav-item">
               <button
                 className="btn btn-dark"
