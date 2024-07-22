@@ -18,6 +18,10 @@ const ModalToAddUser = ({ show, handleClose, addUser }) => {
     setRolUser("admin");
   };
 
+  const sysAdmin = () => {
+    setRolUser("sysadmin");
+  };
+
   const EmailHandler = (event) => {
     setEmail(event.target.value);
   };
@@ -113,6 +117,7 @@ const ModalToAddUser = ({ show, handleClose, addUser }) => {
                 <Dropdown.Menu>
                   <Dropdown.Item onClick={clientUser}>Client</Dropdown.Item>
                   <Dropdown.Item onClick={adminUser}>Admin</Dropdown.Item>
+                  <Dropdown.Item onClick={sysAdmin}>SysAdmin</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </Form.Group>

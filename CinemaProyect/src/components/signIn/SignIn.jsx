@@ -4,26 +4,33 @@ import { useNavigate } from "react-router-dom";
 import useEnglishTranslator from "../../custom/useEnglishTranslator";
 
 const SignIn = ({ onRegister }) => {
+  // custom hook
+  const [isEnglish, setIsEnglish] = useState(false);
 
+  const handleLanguageSwitch = () => {
+    setIsEnglish(!isEnglish);
+  };
 
-// custom hook
-const [isEnglish, setIsEnglish] = useState(false);
-
-const handleLanguageSwitch = () => {
-  setIsEnglish(!isEnglish);
-}
-
-
-const signinTitle = useEnglishTranslator("Registrarse", isEnglish);
-const userInputText = useEnglishTranslator("Usuario", isEnglish);
-const passwordInputText = useEnglishTranslator("Contraseña", isEnglish);
-const confirmPasswordText = useEnglishTranslator("Confirmar contraseña", isEnglish);
-const userInputPlaceholder = useEnglishTranslator("Ingresá tu usuario", isEnglish);
-const passwordInputPlaceholder = useEnglishTranslator("Ingresá tu contraseña", isEnglish);
-const confirmPasswordInputPlaceholder = useEnglishTranslator("Confirmá tu contraseña", isEnglish);
-const emailInputText = useEnglishTranslator("Ingresá tu email", isEnglish);
-
-
+  const signinTitle = useEnglishTranslator("Registrarse", isEnglish);
+  const userInputText = useEnglishTranslator("Usuario", isEnglish);
+  const passwordInputText = useEnglishTranslator("Contraseña", isEnglish);
+  const confirmPasswordText = useEnglishTranslator(
+    "Confirmar contraseña",
+    isEnglish
+  );
+  const userInputPlaceholder = useEnglishTranslator(
+    "Ingresá tu usuario",
+    isEnglish
+  );
+  const passwordInputPlaceholder = useEnglishTranslator(
+    "Ingresá tu contraseña",
+    isEnglish
+  );
+  const confirmPasswordInputPlaceholder = useEnglishTranslator(
+    "Confirmá tu contraseña",
+    isEnglish
+  );
+  const emailInputText = useEnglishTranslator("Ingresá tu email", isEnglish);
 
   const navigate = useNavigate();
   // useRef para acceder al dom
@@ -142,9 +149,13 @@ const emailInputText = useEnglishTranslator("Ingresá tu email", isEnglish);
               type="password"
               placeholder={confirmPasswordInputPlaceholder}
             />
-             <Button onClick={handleLanguageSwitch} variant="dark" style={{"marginTop": "10px"}}>
-          {isEnglish ? "Cambiar a Español" : "Cambiar a Inglés"}
-        </Button>
+            <Button
+              onClick={handleLanguageSwitch}
+              variant="dark"
+              style={{ marginTop: "10px" }}
+            >
+              {isEnglish ? "Change to Spanish" : "Cambiar a Inglés"}
+            </Button>
             <Button
               type="submit"
               variant="dark"
