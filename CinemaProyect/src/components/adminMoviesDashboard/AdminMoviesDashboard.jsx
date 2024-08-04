@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import AdminNavBar from "../adminNavBar/AdminNavBar";
 import DeleteMovieModal from "./deleteMovieModal/DeleteMovieModal";
 import AddMovieModal from "./addMovieModal/AddMovieModal";
-import ModifyMovieModal from '@components/adminMoviesDashboard/modifyMovieModal/ModifyMovieModal';
+import ModifyMovieModal from './components/adminMoviesDashboard/modifyMovieModal/ModifyMovieModal';
 
 
 
