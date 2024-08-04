@@ -5,12 +5,13 @@ import { ThemeContext } from "../../services/theme/theme.context";
 import { UserContext } from "../../services/authentication/user.context";
 import UserBoughtShows from "../userBoughtShows/UserBoughtShows";
 
-const AdminNavBar = () => {
+const SysAdminNav = () => {
   const navItems = [
     { id: 1, text: "Cambiar tema" },
     { id: 2, text: "Sobre Nosotros", link: "/about" },
     { id: 3, text: "Cartelera", link: "/movies" },
-    { id: 4, text: "Peliculas admin", link: "/adminmovies" },
+    { id: 4, text: "Base Usuarios", link: "/userBase" },
+    { id: 5, text: "Peliculas admin", link: "/adminmovies" },
   ];
 
   const navigate = useNavigate();
@@ -103,4 +104,4 @@ const AdminNavBar = () => {
   );
 };
 
-export default AdminNavBar;
+export default SysAdminNav;

@@ -7,14 +7,12 @@ import { UserContext } from "../../services/authentication/user.context";
 import useWindowSize from "../../custom/useWindowSize";
 import useEnglishTranslator from "../../custom/useEnglishTranslator";
 const LogIn = ({ users }) => {
-
   // custom hook
   const [isEnglish, setIsEnglish] = useState(false);
 
   const handleLanguageSwitch = () => {
     setIsEnglish(!isEnglish);
-  }
-
+  };
 
   const loginTitle = useEnglishTranslator("Iniciar sesión", isEnglish);
   const userInputText = useEnglishTranslator("Usuario/Email", isEnglish);
@@ -22,9 +20,18 @@ const LogIn = ({ users }) => {
   const loginButtonText = useEnglishTranslator("Iniciar sesión", isEnglish);
   const widthText = useEnglishTranslator("Ancho de pantalla", isEnglish);
   const heightText = useEnglishTranslator("Alto de pantalla", isEnglish);
-  const forgotPasswordText = useEnglishTranslator("Olvidé mi contraseña", isEnglish);
-  const userInputPlaceholder = useEnglishTranslator("Ingresá tu usuario o email", isEnglish);
-  const passwordInputPlaceholder = useEnglishTranslator("Ingresá tu contraseña", isEnglish);
+  const forgotPasswordText = useEnglishTranslator(
+    "Olvidé mi contraseña",
+    isEnglish
+  );
+  const userInputPlaceholder = useEnglishTranslator(
+    "Ingresá tu usuario o email",
+    isEnglish
+  );
+  const passwordInputPlaceholder = useEnglishTranslator(
+    "Ingresá tu contraseña",
+    isEnglish
+  );
 
   console.log("Renderizando LogIn");
   const { setUser } = useContext(UserContext);
@@ -119,11 +126,19 @@ const LogIn = ({ users }) => {
             >
               {loginButtonText}
             </Button>
-            <Button onClick={handleLanguageSwitch} variant="dark" style={{"marginTop": "10px"}}>
-          {isEnglish ? "Cambiar a Español" : "Cambiar a Inglés"}
-        </Button>
-            <p style={{ marginTop: "40px" }}>{widthText}: {height}px 🖥️</p>
-            <p style={{ marginTop: "40px" }}>{heightText}: {width}px 🖥️</p>
+            <Button
+              onClick={handleLanguageSwitch}
+              variant="dark"
+              style={{ marginTop: "10px" }}
+            >
+              {isEnglish ? "Change to Spanish" : "Cambiar a Inglés"}
+            </Button>
+            <p style={{ marginTop: "40px" }}>
+              {widthText}: {height}px 🖥️
+            </p>
+            <p style={{ marginTop: "40px" }}>
+              {heightText}: {width}px 🖥️
+            </p>
           </Col>
         </Form.Group>
       </Form>

@@ -10,6 +10,7 @@ import NotFound from "./routes/NotFound";
 import UserBase from "./components/userBase/UserBase";
 import AdminMoviesDashboard from "./components/adminMoviesDashboard/AdminMoviesDashboard";
 import MovieDetails from "./components/movieDetails/MovieDetails";
+import ProtectedSysAdmin from "./routes/ProtectedSysAdmin";
 
 function App() {
   //-------------------------FUNCIONES MOVIES--------------------------------
@@ -200,14 +201,14 @@ function App() {
     {
       path: "/userbase",
       element: (
-        <Protected>
+        <ProtectedSysAdmin>
           <UserBase
             listUsers={users}
             onDeletUserHandler={onDeletUserHandler}
             addUser={addUserHandler}
             modifyUser={ModifyUserHandler}
           />
-        </Protected>
+        </ProtectedSysAdmin>
       ),
     },
     {

@@ -7,6 +7,7 @@ import AdminNavBar from "../adminNavBar/AdminNavBar";
 import NavBar from "../navBar/NavBar";
 import { useNavigate } from "react-router-dom";
 import Footer from "../footer/Footer";
+import SysAdminNav from "../sysAdminNav/SysAdminNav";
 
 const MoviesDashboard = ({ movies }) => {
   console.log("renderizado /movies");
@@ -40,6 +41,8 @@ const MoviesDashboard = ({ movies }) => {
         <ClientNavBar />
       ) : user && user.type === "admin" ? (
         <AdminNavBar />
+      ) : user && user.type === "sysadmin" ? (
+        <SysAdminNav />
       ) : (
         <NavBar />
       )}
@@ -86,7 +89,7 @@ const MoviesDashboard = ({ movies }) => {
             : null}
         </Row>
       </Container>
-      <Footer/>
+      <Footer />
     </>
   );
 };
