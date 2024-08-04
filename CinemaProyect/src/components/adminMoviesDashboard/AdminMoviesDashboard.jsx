@@ -4,9 +4,7 @@ import PropTypes from "prop-types";
 import AdminNavBar from "../adminNavBar/AdminNavBar";
 import DeleteMovieModal from "./deleteMovieModal/DeleteMovieModal";
 import AddMovieModal from "./addMovieModal/AddMovieModal";
-import ModifyMovieModal from './components/adminMoviesDashboard/modifyMovieModal/ModifyMovieModal';
-
-
+import ModifyMovieModal from "./modifyMovieModal/ModifyMovieModal";
 
 const AdminMoviesDashboard = ({
   movies,
@@ -19,8 +17,9 @@ const AdminMoviesDashboard = ({
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
 
-// calculo id de prox peli a agregar
-  const nextId = movies.length > 0 ? Math.max(...movies.map(movie => movie.id)) + 1 : 1;
+  // calculo id de prox peli a agregar
+  const nextId =
+    movies.length > 0 ? Math.max(...movies.map((movie) => movie.id)) + 1 : 1;
 
   const handleOpenModifyModal = (movie) => {
     setSelectedMovie(movie);
